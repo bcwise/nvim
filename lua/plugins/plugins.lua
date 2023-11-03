@@ -3,6 +3,85 @@ local cmd = vim.cmd
 return {
 
   --------------------------------------------------------------------
+  -- PLUGIN:  Aerial
+  -- GitHub: stevearc/aerial.nvim
+  -- Comment: A better escape handler.
+  --------------------------------------------------------------------
+  {
+    "stevearc/aerial.nvim",
+    lazy = false,
+    opts = function()
+      local opts = {
+        show_guides = true,
+        layout = {
+          -- resize_to_content = false,
+          win_opts = {
+            winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+            signcolumn = "yes",
+            statuscolumn = " ",
+          },
+        },
+        filter_kind = {
+          -- Default settings
+          -- "Class",
+          -- "Constructor",
+          -- "Enum",
+          -- "Function",
+          -- "Interface",
+          -- "Module",
+          -- "Method",
+          -- "Struct",
+          "Array",
+          "Boolean",
+          "Class",
+          "Constant",
+          "Constructor",
+          "Enum",
+          "EnumMember",
+          "Event",
+          "Field",
+          "File",
+          "Function",
+          "Interface",
+          "Key",
+          "Method",
+          "Module",
+          "Namespace",
+          "Null",
+          "Number",
+          "Object",
+          "Operator",
+          "Package",
+          "Property",
+          "String",
+          "Struct",
+          "TypeParameter",
+          "Variable",
+        },
+      }
+      return opts
+    end,
+    keys = {
+      { "<leader>o", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
+    },
+  },
+
+  --------------------------------------------------------------------
+  -- PLUGIN:  better-escape.nvim
+  -- GitHub: max397574/better-escape.nvim
+  -- Comment: A better escape handler.
+  --------------------------------------------------------------------
+  {
+    "max397574/better-escape.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup()
+    end,
+    keys = {
+      { "H", false },
+    },
+  },
+  --------------------------------------------------------------------
   -- PLUGIN:  central.vim
   -- GitHub:  her/central.vim
   -- Comment: Manages your backup, swap, and undo directories and files.
@@ -24,7 +103,7 @@ return {
   --------------------------------------------------------------------
   {
     "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
+    lazy = false,
     config = function()
       require("chatgpt").setup()
     end,
@@ -59,6 +138,11 @@ return {
   --   lazy = false,
   -- },
 
+  --------------------------------------------------------------------
+  -- PLUGIN:  aerial.nvim
+  -- GitHub:  stevearc/aerial.nvim
+  -- Comment:
+  --------------------------------------------------------------------
   -- {
   --   "stevearc/aerial.nvim",
   --   lazy = false,
@@ -118,6 +202,17 @@ return {
       mappings = {},
     },
   },
+
+  -- disable trouble
+  { "folke/trouble.nvim", enabled = false },
+
+  --------------------------------------------------------------------
+  -- PLUGIN:  Symbols Outline
+  -- GitHub:  simrat39/symbols-outline.nvim
+  -- Comment: Code outliner
+  --          DISABLING SYMBOLS-OUTLINE
+  --------------------------------------------------------------------
+  { "simrat39/symbols-outline.nvim", enabled = false },
 
   --------------------------------------------------------------------
   -- PLUGIN:  vimtex
@@ -254,21 +349,5 @@ return {
         },
       }
     end,
-  },
-
-  --------------------------------------------------------------------
-  -- PLUGIN:  better-escape.nvim
-  -- GitHub: max397574/better-escape.nvim
-  -- Comment: A better escape handler.
-  --------------------------------------------------------------------
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-    keys = {
-      { "H", false },
-    },
   },
 }
