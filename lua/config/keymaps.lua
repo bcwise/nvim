@@ -25,23 +25,23 @@ vim.keymap.del("n", "L")
 
 -- ("n", "<CR>", ":let @/=expand('<cword>')<CR>:set hls<CR>",
 --            "<Enter> selects for searching the current word under the cursor."),
+map("n", "<CR>", "<cmd>let @/=expand('<cword>')<cr>:set hls<cr>")
 
 -- " Shortcuts: search/replace
 -- " A function is for replacing the current-under-cursor word with
 -- " another pattern/word. Simply, it copies the word under cursor and inserts it
 -- " into a substitution command call. You only need to type the replacement pattern
 -- " and press the Enter key to actually replace the text:
--- vim.keymap.set(
---   "n",
---   ";",
---   "<cmd>%s/<C-r><C-w>//g<Left><Left><cr>",
+-- map("n", ";", "<cmd>%s/<C-r><C-w>//g<Left><Left><cr>")
 --   { expr = true, desc = "Search/replace everywhere for the word under the cursor." }
+-- map("n", ";", "<cmd>%s/<C-r><C-w>//g<cr>")
 -- )
 
--- " Shortcuts: Substitute
--- " Setup command to replace current word with last yanked, cut, etc. word.
+-- " Cancel : Substitute
+-- " Setup command to Cancel the current word with last yanked, cut, etc. word.
 -- " Select "S" to replace
--- vim.keymap.set("n", "S", "<cmd>ciw<C-r>0<Esc><cr>", "Replace word under cursor.")
+-- map({ "n", "x" }, 'S', "ciw<C-r>0<Esc><cr>", "Replace word under cursor.")
+map({ "n", "x" }, "S", "ciw<C-r>0<Esc>")
 
 -- Use the <Enter> key to select the whole word under the cursor.
 --["<CR>"] = { "viwy   y/\V<C-R>"<CR> :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
