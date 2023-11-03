@@ -1,6 +1,35 @@
+-- TODO List
+--  Configure EasyAlign correctly
+--  Add DeleteTrailingWhitespace
+
 local cmd = vim.cmd
 
+local clangd_cmd_args = {
+  "clangd",
+  -- "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
+  "-j=6",
+  "--background-index",
+  "--clang-tidy",
+  "--clang-tidy-checks=*",
+  "--completion-style=detailed",
+  "--function-arg-placeholders",
+  "--fallback-style=llvm",
+  "--header-insertion=iwyu",
+  "--clang-tidy-checks=*",
+  -- "--clang-tidy-checks=cppcoreguidelines," ..
+  -- "bugprone-argument-comment," ..
+  -- "bugprone-assert-side-effect",
+  -- "--some-other-option=foo",
+  -- "--yet-another-option=bar",
+}
+
 return {
+
+  --------------------------------------------------------------------
+  -- DISABLE THE FOLLOWING PLUGINS
+  --------------------------------------------------------------------
+  { "simrat39/symbols-outline.nvim", enabled = false },
+  { "folke/trouble.nvim", enabled = false },
 
   --------------------------------------------------------------------
   -- PLUGIN:  Aerial
@@ -81,6 +110,7 @@ return {
       { "H", false },
     },
   },
+
   --------------------------------------------------------------------
   -- PLUGIN:  central.vim
   -- GitHub:  her/central.vim
@@ -115,38 +145,110 @@ return {
   },
 
   --------------------------------------------------------------------
-  -- Comment: Adding clang options.
+  -- PLUGIN: ClangD Extensions
+  -- Github: p00f/clangd_extensions.nvim
+  -- Comment: Adding clang extensions.
   --------------------------------------------------------------------
   {
-    "neovim/nvim-lspconfig",
+    "p00f/clangd_extensions.nvim",
+    lazy = true,
+    config = function() end,
     opts = {
-      setup = {
-        clangd = function(_, opts)
-          opts.capabilities.offsetEncoding = { "utf-16" }
-        end,
+      inlay_hints = {
+        inline = false,
+      },
+      ast = {
+        --These require codicons (https://github.com/microsoft/vscode-codicons)
+        role_icons = {
+          type = "",
+          declaration = "",
+          expression = "",
+          specifier = "",
+          statement = "",
+          ["template argument"] = "",
+        },
+        kind_icons = {
+          Compound = "",
+          Recovery = "",
+          TranslationUnit = "",
+          PackExpansion = "",
+          TemplateTypeParm = "",
+          TemplateTemplateParm = "",
+          TemplateParamObject = "",
+        },
       },
     },
   },
 
   --------------------------------------------------------------------
-  -- PLUGIN:  Symbols Outline
-  -- GitHub:  simrat39/symbols-outline.nvim
-  -- Comment: A tree like view for symbols using LSP.
+  -- PLUGIN: CMP
+  -- Github: nvim-cmp
+  -- Comment: Adding clang options.
   --------------------------------------------------------------------
-  -- {
-  --   "simrat39/symbols-outline.nvim",
-  --   lazy = false,
-  -- },
+  {
+    "nvim-cmp",
+    opts = function(_, opts)
+      table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
+    end,
+  },
 
   --------------------------------------------------------------------
-  -- PLUGIN:  aerial.nvim
-  -- GitHub:  stevearc/aerial.nvim
-  -- Comment:
+  -- PLUGIN: DAP
+  -- Github: mfussenegger/nvim-dap
+  -- Comment: Debugger
+  -- TODO: needs some work
   --------------------------------------------------------------------
-  -- {
-  --   "stevearc/aerial.nvim",
-  --   lazy = false,
-  -- },
+  {
+    "mfussenegger/nvim-dap",
+    optional = true,
+    dependencies = {
+      -- Ensure C/C++ debugger is installed
+      "williamboman/mason.nvim",
+      optional = true,
+      opts = function(_, opts)
+        if type(opts.ensure_installed) == "table" then
+          vim.list_extend(opts.ensure_installed, { "codelldb" })
+        end
+      end,
+    },
+    opts = function()
+      local dap = require("dap")
+      if not dap.adapters["codelldb"] then
+        require("dap").adapters["codelldb"] = {
+          type = "server",
+          host = "localhost",
+          port = "${port}",
+          executable = {
+            command = "codelldb",
+            args = {
+              "--port",
+              "${port}",
+            },
+          },
+        }
+      end
+      for _, lang in ipairs({ "c", "cpp" }) do
+        dap.configurations[lang] = {
+          {
+            type = "codelldb",
+            request = "launch",
+            name = "Launch file",
+            program = function()
+              return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            end,
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "codelldb",
+            request = "attach",
+            name = "Attach to process",
+            processId = require("dap.utils").pick_process,
+            cwd = "${workspaceFolder}",
+          },
+        }
+      end
+    end,
+  },
 
   --------------------------------------------------------------------
   -- PLUGIN:  DeleteTrailingWhitespace.
@@ -154,9 +256,66 @@ return {
   -- Comment: Adds the function to delete trailing whitespace.
   --------------------------------------------------------------------
   {
+    "vim-scripts/deletetrailingwhitespace",
+    lazy = false,
+  },
+
+  --------------------------------------------------------------------
+  -- PLUGIN: LSPConfig
+  -- Github: neovim/nvim-lspconfig
+  -- Comment: Adding clang options.
+  --------------------------------------------------------------------
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- Ensure mason installs the server
+        clangd = {
+          keys = {
+            { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+          },
+          root_dir = function(fname)
+            return require("lspconfig.util").root_pattern(
+              "Makefile",
+              "configure.ac",
+              "configure.in",
+              "config.h.in",
+              "meson.build",
+              "meson_options.txt",
+              "build.ninja"
+            )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+              fname
+            ) or require("lspconfig.util").find_git_ancestor(fname)
+          end,
+          capabilities = {
+            offsetEncoding = { "utf-16" },
+          },
+          cmd = clangd_cmd_args,
+          init_options = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+          },
+        },
+      },
+    },
+  },
+
+  --------------------------------------------------------------------
+  -- PLUGIN:  EasyAlign
+  -- GitHub:  junegunn/vim-easy-align
+  -- Comment: Helps align text
+  --------------------------------------------------------------------
+  {
     "junegunn/vim-easy-align",
     lazy = false,
-    map = { { "ea", "<cmd>EasyAlign<cr>", desc = "Align text columns" } },
+    keys = {
+      {
+        "ea",
+        "<cmd>EasyAlign<cr>",
+        desc = "Align text columns",
+      },
+    },
   },
 
   --------------------------------------------------------------------
@@ -203,16 +362,22 @@ return {
     },
   },
 
-  -- disable trouble
-  { "folke/trouble.nvim", enabled = false },
-
   --------------------------------------------------------------------
-  -- PLUGIN:  Symbols Outline
-  -- GitHub:  simrat39/symbols-outline.nvim
-  -- Comment: Code outliner
-  --          DISABLING SYMBOLS-OUTLINE
+  -- PLUGIN:  treesitter
+  -- GitHub:  nvim-treesitter/nvim-treesitter
+  -- Comment: Syntax parsing
   --------------------------------------------------------------------
-  { "simrat39/symbols-outline.nvim", enabled = false },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, {
+          "c",
+          "cpp",
+        })
+      end
+    end,
+  },
 
   --------------------------------------------------------------------
   -- PLUGIN:  vimtex
