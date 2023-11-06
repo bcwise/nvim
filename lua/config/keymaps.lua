@@ -3,10 +3,41 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
+local default_opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, silent = true, expr = true }
 
 -- Unmap some navigation mappings that are getting overwritten.
 vim.keymap.del("n", "H")
 vim.keymap.del("n", "L")
+
+--******************************************************************************
+--* SEARCH Mappings
+--******************************************************************************
+-- Center the results on the screen
+map("n", "n", "nzz", { noremap = true, silent = true, desc = "Searches forward and centers the result" })
+map("n", "N", "Nzz", { noremap = true, silent = true, desc = "Searches backward and centers the result" })
+map("n", "*", "*zz", {
+  noremap = true,
+  silent = true,
+  desc = "Does a whole word forward search for the word under the cursor and centers the result",
+})
+map("n", "#", "#zz", {
+  noremap = true,
+  silent = true,
+  desc = "Does a whole word backward search for the word under the cursor and centers the result",
+})
+map(
+  "n",
+  "g*",
+  "g*zz",
+  { noremap = true, silent = true, desc = "Searches for the word (NOT whole word) forward and centers the result" }
+)
+map(
+  "n",
+  "g#",
+  "g#zz",
+  { noremap = true, silent = true, desc = "Searches for the word (NOT the whole word) backward and centers the result" }
+)
 
 -- vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
 -- map(
