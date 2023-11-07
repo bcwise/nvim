@@ -80,8 +80,17 @@ map({ "n", "x" }, "S", "ciw<C-r>0<Esc>")
 --TODO(fix):--    ["<CR>"] = { "viwy :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
 
 --******************************************************************************
+--* PLUGIN: Aerial
+--* GitHub: stevearc/aerial.nvim
+--* Comments: A code outline window for skimming and quick navigation.
+--*           The key mapping is so we can use <leader>o to toggle the outline
+--*           viewer open and close.
+--********************************************************************kk**********
+map({ "n" }, "<leader>o", "<cmd>AerialToggle!<CR>", { desc = "Opens/Closes a code outline window." })
+
+--******************************************************************************
 --* PLUGIN: Easy Align
 --* Comments:
 --*   Easily aligns texts into columnms
 --******************************************************************************
-map({ "v" }, "ea", "<Plug>(EasyAlign)")
+map({ "v" }, "ea", "<Plug>(EasyAlign)<cr>", { desc = "Aligns text in columns." })
