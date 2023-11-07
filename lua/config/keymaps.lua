@@ -78,3 +78,10 @@ map({ "n", "x" }, "S", "ciw<C-r>0<Esc>")
 --["<CR>"] = { "viwy   y/\V<C-R>"<CR> :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
 --    ["<CR>"] = { "viwy/\V<C-R><CR> :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
 --TODO(fix):--    ["<CR>"] = { "viwy :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
+
+--******************************************************************************
+--* PLUGIN: Easy Align
+--* Comments:
+--*   Easily aligns texts into columnms
+--******************************************************************************
+map({ "v" }, "ea", "<Plug>(EasyAlign)")
