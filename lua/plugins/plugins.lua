@@ -32,70 +32,6 @@ return {
   { "folke/trouble.nvim", enabled = false },
 
   --------------------------------------------------------------------
-  -- PLUGIN:  Aerial
-  -- GitHub: stevearc/aerial.nvim
-  -- Comment: A code outline
-  --------------------------------------------------------------------
-  {
-    "stevearc/aerial.nvim",
-    lazy = false,
-    opts = function()
-      local opts = {
-        show_guides = true,
-        layout = {
-          -- resize_to_content = false,
-          win_opts = {
-            winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
-            signcolumn = "yes",
-            statuscolumn = " ",
-          },
-        },
-        filter_kind = {
-          -- Default settings
-          -- "Class",
-          -- "Constructor",
-          -- "Enum",
-          -- "Function",
-          -- "Interface",
-          -- "Module",
-          -- "Method",
-          -- "Struct",
-          "Array",
-          "Boolean",
-          "Class",
-          "Constant",
-          "Constructor",
-          "Enum",
-          "EnumMember",
-          "Event",
-          "Field",
-          "File",
-          "Function",
-          "Interface",
-          "Key",
-          "Method",
-          "Module",
-          "Namespace",
-          "Null",
-          "Number",
-          "Object",
-          "Operator",
-          "Package",
-          "Property",
-          "String",
-          "Struct",
-          "TypeParameter",
-          "Variable",
-        },
-      }
-      return opts
-    end,
-    keys = {
-      { "<leader>o", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
-    },
-  },
-
-  --------------------------------------------------------------------
   -- PLUGIN:  better-escape.nvim
   -- GitHub: max397574/better-escape.nvim
   -- Comment: A better escape handler.
@@ -202,6 +138,54 @@ return {
         "ea",
         "<cmd>EasyAlign<cr>",
         desc = "Align text columns",
+      },
+    },
+  },
+
+  --------------------------------------------------------------------
+  -- PLUGIN:  nvim-lspconfig
+  -- GitHub:  neovim/nvim-lspconfig
+  -- Comment: Configure LSPConfigure for clangd
+  --------------------------------------------------------------------
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- Ensure mason installs the server
+        clangd = {
+          keys = {
+            { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+          },
+          root_dir = function(fname)
+            return require("lspconfig.util").root_pattern(
+              "Makefile",
+              "configure.ac",
+              "configure.in",
+              "config.h.in",
+              "meson.build",
+              "meson_options.txt",
+              "build.ninja"
+            )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+              fname
+            ) or require("lspconfig.util").find_git_ancestor(fname)
+          end,
+          capabilities = {
+            offsetEncoding = { "utf-16" },
+          },
+          cmd = clangd_cmd_args,
+          init_options = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+          },
+        },
+      },
+      setup = {
+        clangd = function(_, opts)
+          local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
+          require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
+          return false
+        end,
       },
     },
   },
