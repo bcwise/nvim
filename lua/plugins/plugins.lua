@@ -235,6 +235,98 @@ return {
   },
 
   --------------------------------------------------------------------
+  -- PLUGIN:  Mason
+  -- GitHub:  williamboman/mason.nvim
+  -- Comment: Manages LSPs
+  --          Add any tools you want to have installed below
+  --------------------------------------------------------------------
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        -- Arduino
+        "arduino-language-server",
+
+        -- AWK
+        -- "awk-language-server",
+
+        -- BASH/Shells
+        -- "bash-language-server",
+        "shellcheck",
+        "shfmt",
+
+        -- c/cpp stuff
+        "clangd",
+        "clang-format",
+        "cpplint",
+
+        -- Docker files
+        -- "dockerfile-language-server",
+
+        -- erlang
+        -- "erlang-ls",
+
+        -- HTML
+        "html-lsp",
+        "htmlbeautifier",
+
+        -- Impl
+        "impl",
+
+        -- Java
+        -- "java-language-server",
+
+        -- latex
+        "latexindent",
+        "texlab",
+
+        -- lua stuff
+        "lua-language-server",
+        "luacheck",
+        "luaformatter",
+        "stylua",
+
+        -- Make
+        "cmake-language-server",
+        "cmakelint",
+        -- "make-language-server",
+
+        -- Python
+        "flake8",
+        "pyflakes",
+        "pylama",
+        "pylint",
+        -- "pylyzer",
+        "pyright",
+        "python-lsp-server",
+
+        -- Rust
+        "rust-analyzer",
+        "rustfmt",
+
+        -- Spell
+        "codespell",
+        -- "cspell",
+
+        -- SQL
+        -- "sql-formatter",
+        "sqlfmt",
+        -- "sqlls",
+
+        -- vim
+        "vim-language-server",
+
+        -- web dev stuff
+        -- "css-lsp",
+        -- "html-lsp",
+        -- "typescript-language-server",
+        "deno",
+        -- "prettier",
+      },
+    },
+  },
+
+  --------------------------------------------------------------------
   -- PLUGIN:  treesitter
   -- GitHub:  "nvim-treesitter/nvim-treesitter",
   -- Comment: Syntax parsing
