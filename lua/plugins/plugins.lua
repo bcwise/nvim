@@ -116,6 +116,86 @@ return {
   },
 
   --------------------------------------------------------------------
+  -- PLUGIN:  CMP
+  -- GitHub:  hrsh7th/nvim-cmp
+  -- Comment: Adds SuperTab support in nvim-cmp.
+  --------------------------------------------------------------------
+  {
+    "hrsh7th/nvim-cmp",
+    lazy = false,
+    dependencies = {
+      { "hrsh7th/cmp-emoji", lazy = false },
+      { "hrsh7th/cmp-omni", lazy = false },
+      { "onsails/lspkind.nvim", lazy = false },
+      { "kdheepak/cmp-latex-symbols", lazy = false },
+    },
+
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
+
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
+      -- local lspkind = require("lspkind")
+
+      -- opts.formatting = {
+      -- format = lspkind.cmp_format({
+      --     with_text = false,
+      --     maxwidth  = 50,
+      --     mode      = "symbol_text",
+      --     menu      = ({
+      --         buffer        = "[Buffer]",
+      --         calc          = "[Calc]",
+      --         latex_symbols = "[Latex]",
+      --         LuaSnip       = "[LuaSnip]",
+      --         nvim_lsp      = "[LSP]",
+      --         nvim_lua      = "[Lua]",
+      --         path          = "[PATH]",
+      --         omni          = "[Omni]",
+      --         snippy        = "[Snippy]",
+      --         treesitter    = "[Tree]",
+      --         ultisnips     = "[US]",
+      --         vsnip         = "[VSnip]",
+      --     }),
+      -- }),
+      -- },
+
+      opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
+            cmp.select_next_item()
+            -- cmp.confirm({ select = true })
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- this way you will only jump inside the snippet region
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          -- elseif require("luasnip").expand_or_locally_jumpable() then
+          --   vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+      })
+    end,
+  },
+
+  --------------------------------------------------------------------
   -- PLUGIN:  DeleteTrailingWhitespace.
   -- GitHub:  vim-scripts/deletetrailingwhitespace
   -- Comment: Adds the function to delete trailing whitespace.
@@ -188,6 +268,19 @@ return {
         end,
       },
     },
+  },
+
+  --------------------------------------------------------------------
+  -- PLUGIN:  LuaSnip
+  -- GitHub:  L3MON4D3/LuaSnip
+  -- Comment: Disable default <tab> and s-tab> behavior in LuaSnip.
+  --          We'll add tab support back in with Supertab in nvim-cmp.
+  --------------------------------------------------------------------
+  {
+    "L3MON4D3/LuaSnip",
+    keys = function()
+      return {}
+    end,
   },
 
   --------------------------------------------------------------------
@@ -276,9 +369,13 @@ return {
         -- Java
         -- "java-language-server",
 
+        -- json
+        -- "json.lsp",
+
         -- latex
         "latexindent",
         "texlab",
+        "ltex-ls",
 
         -- lua stuff
         "lua-language-server",
@@ -288,16 +385,22 @@ return {
 
         -- Make
         "cmake-language-server",
+        "cmakelang",
         "cmakelint",
         -- "make-language-server",
 
+        -- Protobufs
+        "buf",
+        "buf-language-server",
+
         -- Python
+        "debugpy",
         "flake8",
         "pyflakes",
         "pylama",
         "pylint",
-        -- "pylyzer",
-        "pyright",
+        "pylyzer",
+        -- "pyright",
         "python-lsp-server",
 
         -- Rust
@@ -306,15 +409,21 @@ return {
 
         -- Spell
         "codespell",
-        -- "cspell",
+        "cspell",
+        "misspell",
 
         -- SQL
         -- "sql-formatter",
+        "sqlfluff",
         "sqlfmt",
         -- "sqlls",
 
+        -- Text
+        "vale",
+
         -- vim
         "vim-language-server",
+        "vint",
 
         -- web dev stuff
         -- "css-lsp",
@@ -322,8 +431,47 @@ return {
         -- "typescript-language-server",
         "deno",
         -- "prettier",
+
+        -- Yaml
+        "yamlfix",
+        "yamlfmt",
+        "yamllint",
       },
     },
+  },
+
+  --------------------------------------------------------------------
+  -- PLUGIN:  Scroll
+  -- GitHub:  karb94/neoscroll.nvim
+  -- Comment: A smooth scrolling neovim plugin.
+  --------------------------------------------------------------------
+  {
+    "karb94/neoscroll.nvim",
+    lazy = false,
+    name = "neoscroll",
+    config = function()
+      local t = {}
+      -- Syntax: t[keys] = {function, {function arguments}}
+      -- Use the "sine" easing function
+      t["<C-u>"] = { "scroll", { "-0.50", "true", "50", [['quadratic']] } }
+      t["<C-d>"] = { "scroll", { "0.50", "true", "50", [['quadratic']] } }
+      -- Use the "circular" easing function
+      t["<C-b>"] = { "scroll", { "-0.50", "false", "50", [['circular']] } }
+      t["<C-f>"] = { "scroll", { "0.50", "false", "50", [['circular']] } }
+      -- Pass "nil" to disable the easing animation (constant scrolling speed)
+      t["<C-y>"] = { "scroll", { "-0.10", "false", "100", [['quadratic']] } }
+      t["<C-e>"] = { "scroll", { " 0.10", "false", "100", [['quadratic']] } }
+      -- When no easing function is provided the default easing function (in this case "quadratic") will be used
+      t["zt"] = { "zt", { "10" } }
+      t["zz"] = { "zz", { "10" } }
+      t["zb"] = { "zb", { "10" } }
+
+      require("neoscroll.config").set_mappings(t)
+      require("neoscroll").setup({
+        easing_function = "quadratic",
+      })
+      require("neoscroll.config").set_mappings(t)
+    end,
   },
 
   --------------------------------------------------------------------
