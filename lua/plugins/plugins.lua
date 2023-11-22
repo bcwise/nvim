@@ -5,8 +5,8 @@
 local cmd = vim.cmd
 
 local clangd_cmd_args = {
-  "clangd",
-  -- "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
+  -- "clangd",
+  "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
   "-j=6",
   "--background-index",
   "--clang-tidy",
@@ -15,12 +15,14 @@ local clangd_cmd_args = {
   "--function-arg-placeholders",
   "--fallback-style=llvm",
   "--header-insertion=iwyu",
-  "--clang-tidy-checks=*",
   -- "--clang-tidy-checks=cppcoreguidelines," ..
   -- "bugprone-argument-comment," ..
   -- "bugprone-assert-side-effect",
   -- "--some-other-option=foo",
   -- "--yet-another-option=bar",
+  -- "--fallback-style=/software/clang/.clang-format",
+  -- "--style=/software/clang/.clang-format",
+  -- "--fallback-style={" "}"
 }
 
 return {
@@ -413,10 +415,10 @@ return {
         "misspell",
 
         -- SQL
-        -- "sql-formatter",
+        "sql-formatter",
         "sqlfluff",
         "sqlfmt",
-        -- "sqlls",
+        "sqlls",
 
         -- Text
         "vale",
