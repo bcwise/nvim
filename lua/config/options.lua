@@ -7,6 +7,9 @@ local global = vim.g
 local window_opt = vim.wo
 local cmd = vim.cmd
 
+-- LSP
+opt.completeopt = "menu,menuone,noselect"
+
 -- This file is automatically loaded by plugins.core
 global.mapleader = ","
 window_opt.relativenumber = true
