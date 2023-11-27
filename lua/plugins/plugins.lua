@@ -3,6 +3,7 @@
 --  Add DeleteTrailingWhitespace
 
 local cmd = vim.cmd
+local global = vim.g
 
 local clangd_cmd_args = {
   "clangd",
@@ -136,170 +137,6 @@ return {
   },
 
   --------------------------------------------------------------------
-  -- PLUGIN:  CMP
-  -- GitHub:  hrsh7th/nvim-cmp
-  -- Comment: Adds SuperTab support in nvim-cmp.
-  --------------------------------------------------------------------
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   lazy = false,
-  --
-  --   dependencies = {
-  --     { "hrsh7th/cmp-emoji", lazy = false },
-  --     { "kdheepak/cmp-latex-symbols", lazy = false },
-  --     { "hrsh7th/cmp-omni", lazy = false },
-  --     { "ray-x/cmp-treesitter", lazy = false },
-  --     { "onsails/lspkind.nvim", lazy = false },
-  --   },
-  --
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     local cmp = require("cmp")
-  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "latex" } }))
-  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "omni" } }))
-  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "treesitter" } }))
-  --
-  --     local has_words_before = function()
-  --       unpack = unpack or table.unpack
-  --       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  --       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  --     end
-  --
-  --     local lspkind = require("lspkind")
-  --     local luasnip = require("luasnip")
-  --     local cmp = require("cmp")
-  --
-  --     opts.formatting = {
-  --     --   format = lspkind.cmp_format({
-  --     --     with_text = false,
-  --     --     maxwidth  = 50,
-  --     --     mode      = "symbol_text",
-  --     --     menu      = ({
-  --     --       buffer        = "[Buffer]",
-  --     --       calc          = "[Calc]",
-  --     --       latex_symbols = "[Latex]",
-  --     --       LuaSnip       = "[LuaSnip]",
-  --     --       nvim_lsp      = "[LSP]",
-  --     --       nvim_lua      = "[Lua]",
-  --     --       path          = "[PATH]",
-  --     --       omni          = "[Omni]",
-  --     --       snippy        = "[Snippy]",
-  --     --       treesitter    = "[Tree]",
-  --     --       ultisnips     = "[US]",
-  --     --       vsnip         = "[VSnip]",
-  --     --     }),
-  --     --   }),
-  --     },
-  --
-  --     opts.mapping = vim.tbl_extend("force", opts.mapping, {
-  --       ["<Tab>"] = cmp.mapping(function(fallback)
-  --         if cmp.visible() then
-  --           -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
-  --           cmp.select_next_item()
-  --           -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-  --           -- this way you will only jump inside the snippet region
-  --         elseif luasnip.expand_or_jumpable() then
-  --           luasnip.expand_or_jump()
-  --         elseif has_words_before() then
-  --           cmp.complete()
-  --         else
-  --           fallback()
-  --         end
-  --       end, { "i", "s" }),
-  --       ["<S-Tab>"] = cmp.mapping(function(fallback)
-  --         if cmp.visible() then
-  --           cmp.select_prev_item()
-  --         elseif luasnip.jumpable(-1) then
-  --           luasnip.jump(-1)
-  --         else
-  --           fallback()
-  --         end
-  --       end, { "i", "s" }),
-  --     })
-  --   end,
-  -- },
-  -- --   dependencies = {
-  -- --     { "hrsh7th/cmp-emoji", lazy = false },
-  -- --     { "hrsh7th/cmp-omni", lazy = false },
-  -- --     { "onsails/lspkind.nvim", lazy = false },
-  -- --     { "kdheepak/cmp-latex-symbols", lazy = false },
-  -- --     { "ray-x/cmp-treesitter", lazy = false },
-  -- --   },
-  -- --
-  -- --   ---@param opts cmp.ConfigSchema
-  -- --   opts = function(_, opts)
-  -- --     -- local has_words_before = function()
-  -- --     --   unpack = unpack or table.unpack
-  -- --     --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  -- --     --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  -- --     -- end
-  -- --
-  -- --     local luasnip = require("luasnip")
-  -- --     local cmp = require("cmp")
-  -- --     local lspkind = require("lspkind")
-  -- --
-  -- --     sources = cmp.config.sources({
-  -- --       { name = "emoji" },
-  -- --       { name = "latex" },
-  -- --       { name = "omni" },
-  -- --       { name = "tresitter" },
-  -- --     })
-  -- --
-  -- --     -- opts.formatting = {
-  -- --     -- format = lspkind.cmp_format({
-  -- --     --     with_text = false,
-  -- --     --     maxwidth  = 50,
-  -- --     --     mode      = "symbol_text",
-  -- --     --     menu      = ({
-  -- --     --         buffer        = "[Buffer]",
-  -- --     --         calc          = "[Calc]",
-  -- --     --         latex_symbols = "[Latex]",
-  -- --     --         LuaSnip       = "[LuaSnip]",
-  -- --     --         nvim_lsp      = "[LSP]",
-  -- --     --         nvim_lua      = "[Lua]",
-  -- --     --         path          = "[PATH]",
-  -- --     --         omni          = "[Omni]",
-  -- --     --         snippy        = "[Snippy]",
-  -- --     --         treesitter    = "[Tree]",
-  -- --     --         ultisnips     = "[US]",
-  -- --     --         vsnip         = "[VSnip]",
-  -- --     --     }),
-  -- --     -- }),
-  -- --     -- },
-  -- --
-  -- --     -- opts.mapping = vim.tbl_extend("force", opts.mapping, {
-  -- --     --   ["<Tab>"] = cmp.mapping(function(fallback)
-  -- --     --     if cmp.visible() then
-  -- --     --       -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
-  -- --     --       cmp.select_next_item()
-  -- --     --       -- cmp.confirm({ select = true })
-  -- --     --       -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-  -- --     --       -- this way you will only jump inside the snippet region
-  -- --     --     elseif luasnip.expand_or_jumpable() then
-  -- --     --       luasnip.expand_or_jump()
-  -- --     --     -- elseif require("luasnip").expand_or_locally_jumpable() then
-  -- --     --     --   vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-  -- --     --     elseif has_words_before() then
-  -- --     --       cmp.complete()
-  -- --     --     else
-  -- --     --       fallback()
-  -- --     --     end
-  -- --     --   end, { "i", "s" }),
-  -- --     --   ["<S-Tab>"] = cmp.mapping(function(fallback)
-  -- --     --     if cmp.visible() then
-  -- --     --       cmp.select_prev_item()
-  -- --     --     elseif luasnip.jumpable(-1) then
-  -- --     --       luasnip.jump(-1)
-  -- --     --     else
-  -- --     --       fallback()
-  -- --     --     end
-  -- --     --   end, { "i", "s" }),
-  -- --     -- })
-  -- --   end,
-  -- -- },
-
-  --------------------------------------------------------------------
   -- PLUGIN:  DeleteTrailingWhitespace.
   -- GitHub:  vim-scripts/deletetrailingwhitespace
   -- Comment: Adds the function to delete trailing whitespace.
@@ -324,57 +161,75 @@ return {
         desc = "Align text columns",
       },
     },
+    config = function()
+      vim.g.easy_align_indentation = "s"
+    end,
   },
 
   --------------------------------------------------------------------
-  -- PLUGIN:  nvim-lspconfig
-  -- GitHub:  neovim/nvim-lspconfig
-  -- Comment: Configure LSPConfigure for clangd
+  -- PLUGIN:  flash
+  -- GitHub:  folke/flash
+  -- Comment: flash.nvim lets you navigate your code with search
+  --          labels, enhanced character motions, and Treesitter
+  --          integration.
   --------------------------------------------------------------------
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     servers = {
-  --       -- Ensure mason installs the server
-  --       clangd = {
-  --         keys = {
-  --           { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
-  --         },
-  --         root_dir = function(fname)
-  --           return require("lspconfig.util").root_pattern(
-  --             "Makefile",
-  --             "configure.ac",
-  --             "configure.in",
-  --             "config.h.in",
-  --             "meson.build",
-  --             "meson_options.txt",
-  --             "build.ninja"
-  --           )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-  --             fname
-  --           ) or require("lspconfig.util").find_git_ancestor(fname)
-  --         end,
-  --         capabilities = {
-  --           offsetEncoding = { "utf-16" },
-  --         },
-  --         cmd = clangd_cmd_args,
-  --         init_options = {
-  --           usePlaceholders = true,
-  --           completeUnimported = true,
-  --           clangdFileStatus = true,
-  --         },
-  --       },
-  --     },
-  --     setup = {
-  --       clangd = function(_, opts)
-  --         opts.capabilities.offsetEncoding = { "utf-16" }
-  --         local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
-  --         require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
-  --         return false
-  --       end,
-  --     },
-  --   },
-  -- },
-  --
+  {
+    "folke/flash.nvim",
+    lazy = false,
+    vscode = true,
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
+
+  --------------------------------------------------------------------
+  -- PLUGIN:  gitsigns
+  -- GitHub:  lewis6991/gitsigns
+  -- Comment: Configure gitsigns.
+  --------------------------------------------------------------------
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "LazyFile",
+    opts = {
+      --          signs = {
+      --            add = { text = "▎" },
+      --         change = { text = "▎" },
+      --         delete = { text = "" },
+      --      topdelete = { text = "" },
+      --   changedelete = { text = "▎" },
+      --      untracked = { text = "▎" },
+      -- },
+      on_attach = function(buffer)
+        local gs = package.loaded.gitsigns
+
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+        end
+
+        -- stylua: ignore start
+        map("n", "]h", gs.next_hunk, "Next Hunk")
+        map("n", "[h", gs.prev_hunk, "Prev Hunk")
+        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+        map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+        map("n", "<leader>ghd", gs.diffthis, "Diff This")
+        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+      end,
+    },
+  },
+
   --------------------------------------------------------------------
   -- PLUGIN:  LuaSnip
   -- GitHub:  L3MON4D3/LuaSnip
