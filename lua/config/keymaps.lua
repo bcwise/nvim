@@ -93,4 +93,15 @@ map({ "n" }, "<leader>o", "<cmd>AerialToggle!<CR>", { desc = "Opens/Closes a cod
 --* Comments:
 --*   Easily aligns texts into columnms
 --******************************************************************************
-map({ "v" }, "ea", "<Plug>(EasyAlign)<cr>", { desc = "Aligns text in columns." })
+vim.api.nvim_set_keymap(
+  "n",
+  "ea",
+  "<Plug>(EasyAlign)",
+  { desc = "Aligns text using a delimiter.", noremap = false, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "v",
+  "ea",
+  "<Plug>(EasyAlign)",
+  { desc = "Aligns text using a delimiter.", noremap = false, silent = true }
+)
