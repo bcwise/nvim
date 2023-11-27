@@ -34,6 +34,24 @@ return {
   { "folke/trouble.nvim", enabled = false },
 
   --------------------------------------------------------------------
+  -- PLUGIN:  aerial.nvim
+  -- GitHub: max397574/aerial.nvim
+  -- Comment: A better escape handler.
+  --------------------------------------------------------------------
+  {
+    "stevearc/aerial.nvim",
+    lazy = false,
+    config = function()
+      require("aerial").setup({
+        resize_to_content = true,
+      })
+    end,
+    keys = {
+      { "H", false },
+    },
+  },
+
+  --------------------------------------------------------------------
   -- PLUGIN:  better-escape.nvim
   -- GitHub: max397574/better-escape.nvim
   -- Comment: A better escape handler.
