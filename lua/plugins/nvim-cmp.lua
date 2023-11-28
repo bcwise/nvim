@@ -21,10 +21,13 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "calc" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "crates" } }))
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "latex" } }))
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "omni" } }))
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "treesitter" } }))
+
+      table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
 
       local has_words_before = function()
         unpack = unpack or table.unpack

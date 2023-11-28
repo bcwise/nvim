@@ -1,0 +1,120 @@
+--------------------------------------------------------------------
+-- PLUGIN:  Mason
+-- GitHub:  williamboman/mason.nvim
+-- Comment: Manages LSPs
+--          Add any tools you want to have installed below
+--------------------------------------------------------------------
+return {
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "cmakelang", "cmakelint" })
+      vim.list_extend(opts.ensure_installed, { "java-test", "java-debug-adapter" })
+      vim.list_extend(opts.ensure_installed, { "markdownlint", "marksman" })
+    end,
+    -- opts = {
+    --   ensure_installed = {
+    --     -- Arduino
+    --     "arduino-language-server",
+    --
+    --     -- AWK
+    --     -- "awk-language-server",
+    --
+    --     -- BASH/Shells
+    --     -- "bash-language-server",
+    --     "shellcheck",
+    --     "shfmt",
+    --
+    --     -- c/cpp stuff
+    --     "clangd",
+    --     "clang-format",
+    --     "cpplint",
+    --
+    --     -- Docker files
+    --     -- "dockerfile-language-server",
+    --
+    --     -- erlang
+    --     -- "erlang-ls",
+    --
+    --     -- HTML
+    --     "html-lsp",
+    --     "htmlbeautifier",
+    --
+    --     -- Impl
+    --     "impl",
+    --
+    --     -- Java
+    --     -- "java-language-server",
+    --
+    --     -- json
+    --     -- "json.lsp",
+    --
+    --     -- latex
+    --     "latexindent",
+    --     "texlab",
+    --     "ltex-ls",
+    --
+    --     -- lua stuff
+    --     "lua-language-server",
+    --     "luacheck",
+    --     "luaformatter",
+    --     "stylua",
+    --
+    --     -- Make
+    --     "cmake-language-server",
+    --     "cmakelang",
+    --     "cmakelint",
+    --     -- "make-language-server",
+    --
+    --     -- Protobufs
+    --     "buf",
+    --     "buf-language-server",
+    --
+    --     -- Python
+    --     "debugpy",
+    --     "flake8",
+    --     "pyflakes",
+    --     "pylama",
+    --     "pylint",
+    --     "pylyzer",
+    --     -- "pyright",
+    --     "python-lsp-server",
+    --
+    --     -- Rust
+    --     "rust-analyzer",
+    --     "rustfmt",
+    --
+    --     -- Spell
+    --     "codespell",
+    --     "cspell",
+    --     "misspell",
+    --
+    --     -- SQL
+    --     "sql-formatter",
+    --     "sqlfluff",
+    --     "sqlfmt",
+    --     "sqlls",
+    --
+    --     -- Text
+    --     "vale",
+    --
+    --     -- vim
+    --     "vim-language-server",
+    --     "vint",
+    --
+    --     -- web dev stuff
+    --     -- "css-lsp",
+    --     -- "html-lsp",
+    --     -- "typescript-language-server",
+    --     "deno",
+    --     -- "prettier",
+    --
+    --     -- Yaml
+    --     "yamlfix",
+    --     "yamlfmt",
+    --     "yamllint",
+    --   },
+    -- },
+  },
+}
