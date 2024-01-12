@@ -12,7 +12,7 @@ opt.completeopt = "menu,menuone,noselect"
 
 -- This file is automatically loaded by plugins.core
 global.mapleader = ","
-window_opt.relativenumber = true
+window_opt.relativenumber = false
 window_opt.number = true
 opt.foldenable = false
 cmd("set nowrapscan")
