@@ -17,9 +17,6 @@ window_opt.number = true
 opt.foldenable = false
 cmd("set nowrapscan")
 
--- Disable conceal mode
-global.conceallevel = 0
-
 -- Cursor Line and Column ------------------------------------------------------
 -- Row --
 -- opt.cursorline = true
