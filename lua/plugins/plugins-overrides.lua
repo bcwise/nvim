@@ -1,24 +1,5 @@
 return {
 
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-cmdline",
-      "kdheepak/cmp-latex-symbols",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "f3fora/cmp-spell",
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "calc" } }))
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "cmdline" } }))
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "latex-symbols" } }))
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "nvim-lsp-signature-help" } }))
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "spell" } }))
-    end,
-  },
   --------------------------------------------------------------------
   -- PLUGIN:  nvim-conv
   -- GitHub:  http://github.com/simonefranza/nvim-conv
