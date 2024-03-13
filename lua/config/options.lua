@@ -13,6 +13,8 @@ window_opt.relativenumber = false
 window_opt.number = true
 opt.foldenable = false
 cmd("set nowrapscan")
+cmd("set textwidth=80")
+cmd("set clipboard+=unnamedplus")
 
 -- Cursor Line and Column ------------------------------------------------------
 -- Row --
