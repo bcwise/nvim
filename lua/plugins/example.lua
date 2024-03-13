@@ -9,7 +9,6 @@ if true then return {} end
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
@@ -29,7 +28,7 @@ return {
   },
 
   -- disable trouble
-  { "folke/noice.nvim", enabled = false },
+  { "folke/trouble.nvim", enabled = false },
 
   -- add symbols-outline
   {
@@ -45,19 +44,8 @@ return {
     dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+      table.insert(opts.sources, { name = "emoji" })
     end,
-  },
-
-  -- Have the first menu item selected
-  {
-    "hrsh7th/nvim-cmp",
-    opts = {
-      completion = {
-        completeopt = "menu,menuone",
-      },
-    },
   },
 
   -- change some telescope options and a keymap to browse plugin files
@@ -114,7 +102,7 @@ return {
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
-        require("lazyvim.util").on_attach(function(_, buffer)
+        require("lazyvim.util").lsp.on_attach(function(_, buffer)
           -- stylua: ignore
           vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
           vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
@@ -152,48 +140,18 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "arduino",
         "bash",
-        "bash",
-        "bibtex",
-        "c",
-        "cmake",
-        "cpp",
-        "css",
-        "diff",
-        "erlang",
-        "git_config",
-        "gitignore",
-        "haskell",
         "html",
-        "html",
-        "java",
-        "javascript",
         "javascript",
         "json",
-        "json",
-        "latex",
         "lua",
-        "lua",
-        "make",
-        "markdown",
         "markdown",
         "markdown_inline",
-        "markdown_inline",
-        "perl",
-        "puppet",
-        "python",
         "python",
         "query",
         "regex",
-        "regex",
-        "rust",
-        "sql",
-        "tsx",
         "tsx",
         "typescript",
-        "typescript",
-        "vim",
         "vim",
         "yaml",
       },
@@ -245,84 +203,6 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        -- Arduino
-        "arduino-language-server",
-
-        -- AWK
-        "awk-language-server",
-
-        -- BASH/Shells
-        "bash-language-server",
-        "shellcheck",
-        "shfmt",
-
-        -- c/cpp stuff
-        "clangd",
-        "clang-format",
-        "cpplint",
-
-        -- Docker files
-        "dockerfile-language-server",
-
-        -- erlang
-        "erlang-ls",
-
-        -- HTML
-        "html-lsp",
-        "htmlbeautifier",
-
-        -- Impl
-        "impl",
-
-        -- Java
-        "java-language-server",
-
-        -- latex
-        "latexindent",
-        "texlab",
-
-        -- lua stuff
-        "lua-language-server",
-        "luacheck",
-        "luaformatter",
-        "stylua",
-
-        -- Make
-        "cmake-language-server",
-        "cmakelint",
-        "make-language-server",
-
-        -- Python
-        "pyflakes",
-        "pylama",
-        "pylint",
-        "pylyzer",
-        "pyright",
-        "python-lsp-server",
-
-        -- Rust
-        "rust-analyzer",
-        "rustfmt",
-
-        -- Spell
-        "codespell",
-        "cspell",
-
-        -- SQL
-        "sql-formatter",
-        "sqlfmt",
-        "sqlls",
-
-        -- vim
-        "vim-language-server",
-
-        -- web dev stuff
-        "css-lsp",
-        "html-lsp",
-        "typescript-language-server",
-        "deno",
-        "prettier",
-
         "stylua",
         "shellcheck",
         "shfmt",
@@ -353,58 +233,33 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      -- local luasnip = require("luasnip")
-      -- local cmp = require("cmp")
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
 
-      -- opts.mapping = vim.tbl_extend("force", opts.mapping, {
-      --   ["<Tab>"] = cmp.mapping(function(fallback)
-      --     if cmp.visible() then
-      --       cmp.select_next_item()
-      --     elseif require("luasnip").expand_or_jumpable() then
-      --       vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-      --     else
-      --       fallback()
-      --     end
-      --   end, {
-      --     "i",
-      --     "s",
-      --   }),
-      --   ["<S-Tab>"] = cmp.mapping(function(fallback)
-      --     if cmp.visible() then
-      --       cmp.select_prev_item()
-      --     elseif require("luasnip").jumpable(-1) then
-      --       vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-      --     else
-      --       fallback()
-      --     end
-      --   end, {
-      --     "i",
-      --     "s",
-      --   }),
-
-      -- ["<Tab>"] = cmp.mapping(function(fallback)
-      --   if cmp.visible() then
-      --     cmp.select_next_item()
-      --     -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-      --     -- this way you will only jump inside the snippet region
-      --   elseif luasnip.expand_or_jumpable() then
-      --     luasnip.expand_or_jump()
-      --   elseif has_words_before() then
-      --     cmp.complete()
-      --   else
-      --     fallback()
-      --   end
-      -- end, { "i", "s" }),
-      -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-      --   if cmp.visible() then
-      --     cmp.select_prev_item()
-      --   elseif luasnip.jumpable(-1) then
-      --     luasnip.jump(-1)
-      --   else
-      --     fallback()
-      --   end
-      -- end, { "i", "s" }),
-      -- })
+      opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- this way you will only jump inside the snippet region
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+      })
     end,
   },
 }
