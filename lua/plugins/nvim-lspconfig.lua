@@ -36,7 +36,7 @@ return {
           offsetEncoding = { "utf-16" },
         },
         cmd = {
-          "clangd",
+          "/usr/bin/clangd",
           "-j6",
           "--background-index",
           "--clang-tidy",
