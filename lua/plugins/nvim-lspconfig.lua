@@ -5,7 +5,7 @@ return {
   "neovim/nvim-lspconfig",
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim.
-  { import = "lazyvim.plugins.extras.lang.typescript" },
+  import = "lazyvim.plugins.extras.lang.typescript",
   opts = {
     ---@type lspconfig.options
     servers = {
@@ -15,6 +15,7 @@ return {
       --    Ensure mason installs the server
       --------------------------------------------------------------------------
       clangd = {
+        mason = false, -- We will use our own clangd
         keys = {
           { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
         },
@@ -85,17 +86,18 @@ return {
       require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
       return false
     end,
-    --------------------------------------------------------------------------
-    -- Setup: python
-    -- Notes:
-    --------------------------------------------------------------------------
-    ruff_lsp = function()
-      require("lazyvim.util").lsp.on_attach(function(client, _)
-        if client.name == "ruff_lsp" then
-          -- Disable hover in favor of Pyright
-          client.server_capabilities.hoverProvider = false
-        end
-      end)
-    end,
   },
+
+  --------------------------------------------------------------------------
+  -- Setup: python
+  -- Notes:
+  --------------------------------------------------------------------------
+  ruff_lsp = function()
+    require("lazyvim.util").lsp.on_attach(function(client, _)
+      if client.name == "ruff_lsp" then
+        -- Disable hover in favor of Pyright
+        client.server_capabilities.hoverProvider = false
+      end
+    end)
+  end,
 }
