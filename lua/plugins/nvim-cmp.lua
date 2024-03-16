@@ -47,6 +47,9 @@ return {
         end,
       }
       table.insert(opts.sources, { name = "luasnip" })
+
+      -- Scoring
+      table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
     end,
   },
 }
