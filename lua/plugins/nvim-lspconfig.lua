@@ -2,7 +2,6 @@
 -- Plugin: neovim/nvim-lspconfig"
 --------------------------------------------------------------------------------
 return {
-
   -- add pyright to lspconfig
   {
     "neovim/nvim-lspconfig",
