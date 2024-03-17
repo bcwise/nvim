@@ -71,8 +71,21 @@ return {
       }
       table.insert(opts.sources, { name = "luasnip" })
 
-      -- Scoring
-      table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
+      -- sources for autocompletion
+      sources =
+        cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "calc" }, -- snippets
+          { name = "omni" }, -- snippets
+          { name = "treesitter" }, -- snippets
+          { name = "crates" }, -- snippets
+          { name = "latex" }, -- snippets
+          { name = "luasnip" }, -- snippets
+          { name = "buffer" }, -- text within current buffer
+          { name = "path" }, -- file system paths
+        }),
+        -- Scoring
+        table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
     end,
   },
 }
