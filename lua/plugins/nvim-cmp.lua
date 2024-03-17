@@ -74,15 +74,15 @@ return {
       -- sources for autocompletion
       sources =
         cmp.config.sources({
-          { name = "nvim_lsp" },
+          { name = "buffer" }, -- text within current buffer
           { name = "calc" }, -- snippets
-          { name = "omni" }, -- snippets
-          { name = "treesitter" }, -- snippets
           { name = "crates" }, -- snippets
           { name = "latex" }, -- snippets
           { name = "luasnip" }, -- snippets
-          { name = "buffer" }, -- text within current buffer
+          { name = "nvim_lsp" },
+          { name = "omni" }, -- snippets
           { name = "path" }, -- file system paths
+          { name = "treesitter" }, -- snippets
         }),
         -- Scoring
         table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))

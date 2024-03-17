@@ -15,7 +15,7 @@ return {
       --    Ensure mason installs the server
       --------------------------------------------------------------------------
       clangd = {
-        mason = false, -- We will use our own clangd
+        -- mason = false, -- We will use our own clangd
         keys = {
           { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
         },
