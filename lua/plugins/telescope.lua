@@ -23,6 +23,7 @@ return {
       },
     },
     -- change some options
+    --
     opts = {
       defaults = {
         layout_strategy = "horizontal",

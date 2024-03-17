@@ -14,6 +14,29 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+      local lspkind = require("lspkind")
+
+      -- configure lspkind for vs-code like pictograms in completion menu formatting = {
+      opts.format = lspkind.cmp_format({
+        maxwidth = 50,
+        mode = "symbol_text",
+        ellipsis_char = "...",
+        menu = {
+          buffer = "[Buffer]",
+          calc = "[Calc]",
+          latex_symbols = "[Latex]",
+          LuaSnip = "[LuaSnip]",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[Lua]",
+          path = "[PATH]",
+          omni = "[Omni]",
+          snippy = "[Snippy]",
+          snippet = "[Snippet]",
+          treesitter = "[Tree]",
+          ultisnips = "[US]",
+          vsnip = "[VSnip]",
+        },
+      })
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
