@@ -15,13 +15,14 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
-    { import = "lazyvim.plugins.extras.coding.native_snippets" },
+    -- { import = "lazyvim.plugins.extras.coding.native_snippets" },
+    -- { import = "lazyvim.plugins.extras.editor.aerial" },     -- TODO: should make this work
+    { import = "lazyvim.plugins.extras.editor.outline" }, -- TODO  And then remove this one
     { import = "lazyvim.plugins.extras.lang.clangd" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.tex" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
-    -- { import = "lazyvim.plugins.extras.editor.aerial" },     -- TODO: should make this work
-    { import = "lazyvim.plugins.extras.editor.outline" },
+    { import = "lazyvim.plugins.extras.vscode" },
     { import = "plugins" },
   },
   defaults = {

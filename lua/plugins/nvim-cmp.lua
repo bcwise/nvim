@@ -5,6 +5,27 @@ return {
   {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+      cmp.setup({
+        completion = {
+          -- completeopt = "menu,menuone,noinsert,noselect",
+          completeopt = "menu,menuone,noinsert",
+        },
+        sources = cmp.config.sources({
+          { name = "calc" }, -- snippets
+          { name = "crates" }, -- snippets
+          { name = "latex" }, -- snippets
+          { name = "omni" }, -- snippets
+          { name = "path" }, -- file system paths
+          { name = "treesitter" }, -- snippets
+          { name = "luasnip" },
+          { name = "nvim_lsp" },
+        }, { { name = "buffer" } }),
+      })
+    end,
+
     opts = function(_, opts)
       opts.snippet = {
         expand = function(args)

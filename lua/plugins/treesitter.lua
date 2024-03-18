@@ -34,6 +34,7 @@ return {
       "rst",
       "ruby",
       "rust",
+      "sql",
       "toml",
       "vim",
       "tsx",

@@ -7,6 +7,7 @@ return {
     opts = {
       ensure_installed = {
         "bash-language-server",
+        "sqlls",
         "stylua",
         "shellcheck",
         "shfmt",

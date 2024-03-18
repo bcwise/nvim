@@ -1,7 +1,10 @@
 --------------------------------------------------------------------------------
--- Plugin: cmp_luasnip
+-- Plugin: nvim-ts-context-commentstring
 --------------------------------------------------------------------------------
 return {
-  -- "saadparwaiz1/cmp_luasnip",
-  -- opts = {},
+  "JoosepAlviste/ntim-ts-context-commentstring",
+  lazy = true,
+  opts = {
+    enable_autocmd = false,
+  },
 }
