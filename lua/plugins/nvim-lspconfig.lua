@@ -59,7 +59,7 @@ return {
       --    Ensure mason installs the server
       --------------------------------------------------------------------------
       clangd = {
-        -- mason = false, -- We will use our own clangd
+        mason = false, -- We will use our own clangd
         keys = {
           { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
         },
@@ -81,13 +81,23 @@ return {
         },
         cmd = {
           "clangd",
-          "-j6",
+          -- "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
+          "-j=6",
           "--background-index",
           "--clang-tidy",
-          "--header-insertion=iwyu",
+          "--clang-tidy-checks=*",
           "--completion-style=detailed",
           "--function-arg-placeholders",
           "--fallback-style=llvm",
+          "--header-insertion=iwyu",
+          -- "--clang-tidy-checks=cppcoreguidelines," ..
+          -- "bugprone-argument-comment," ..
+          -- "bugprone-assert-side-effect",
+          -- "--some-other-option=foo",
+          -- "--yet-another-option=bar",
+          -- "--fallback-style=/software/clang/.clang-format",
+          -- "--style=/software/clang/.clang-format",
+          -- "--fallback-style={" "}"
         },
         init_options = {
           usePlaceholders = true,
