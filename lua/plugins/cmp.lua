@@ -102,41 +102,4 @@ return {
       }
     end,
   },
-
-  -- {
-  --   "nvim-cmp",
-  --
-  --   dependencies = {
-  --     "onsails/lspkind.nvim", -- vs-code like pictograms
-  --   },
-  --
-  --   config = function()
-  --     local cmp = require("cmp")
-  --     local lspkind = require("lspkind")
-  --
-  --     cmp.setup({
-  --       -- configure lspkind for vs-code like pictograms in completion menu formatting = {
-  --       format = lspkind.cmp_format({
-  --         maxwidth = 50,
-  --         mode = "symbol_text",
-  --         ellipsis_char = "...",
-  --         menu = {
-  --           buffer = "[Buffer]",
-  --           calc = "[Calc]",
-  --           latex_symbols = "[Latex]",
-  --           LuaSnip = "[LuaSnip]",
-  --           nvim_lsp = "[LSP]",
-  --           nvim_lua = "[Lua]",
-  --           path = "[PATH]",
-  --           omni = "[Omni]",
-  --           snippy = "[Snippy]",
-  --           snippet = "[Snippet]",
-  --           treesitter = "[Tree]",
-  --           ultisnips = "[US]",
-  --           vsnip = "[VSnip]",
-  --         },
-  --       }),
-  --     })
-  --   end,
-  -- },
 }
