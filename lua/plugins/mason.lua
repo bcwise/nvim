@@ -4,6 +4,7 @@ return {
   opts = {
     ensure_installed = {
       "bash-language-server",
+      "cmake-language-server",
       "flake8",
       "json-lsp",
       "lua-language-server",
