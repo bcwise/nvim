@@ -35,6 +35,7 @@ return {
         "bibtex",
         "cmake",
         "comment",
+        "c",
         "cpp",
         "diff",
         "disassembly",
