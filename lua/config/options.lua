@@ -17,6 +17,9 @@ local cmd = vim.cmd
 global.mapleader = ","
 window_opt.relativenumber = false
 window_opt.number = true
+window_opt.numberwidth = 4
+window_opt.signcolumn = "auto:2-8"
+
 opt.foldenable = false
 cmd("set nowrapscan")
 cmd("set textwidth=80")
