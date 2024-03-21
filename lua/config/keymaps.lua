@@ -39,6 +39,7 @@ map(
   { noremap = true, silent = true, desc = "Searches for the word (NOT the whole word) backward and centers the result" }
 )
 
+-- Now is the time.
 --------------------------------------------------------------------------------
 -- Select whole word under cursor
 -- Comments:
