@@ -39,45 +39,49 @@ map(
   { noremap = true, silent = true, desc = "Searches for the word (NOT the whole word) backward and centers the result" }
 )
 
--- vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
--- map(
---   "n",
---   "<cr>",
---   "<cmd>let @/=expand('<cword>')<CR>:set hls<CR>",
---   { expr = true, silent = true, desc = "<Enter> selects for searching the current word under the cursor." }
--- )
-
--- map(
---   "n",
---   "<leader>xx",
---   "<Cmd>let @=expand('<cword>')<CR>",
---   { expr = true, desc = "<Enter> selects for searching the current word under the cursor." }
--- )
-
--- ("n", "<CR>", ":let @/=expand('<cword>')<CR>:set hls<CR>",
---            "<Enter> selects for searching the current word under the cursor."),
+--------------------------------------------------------------------------------
+-- Select whole word under cursor
+-- Comments:
+--    Use the <Enter> key to select the whole word under the cursor.
+-- Previous incantations (keeping them for future needs):
+--    ["<CR>"] = { "viwy   y/\V<C-R>"<CR> :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
+--    ["<CR>"] = { "viwy/\V<C-R><CR> :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
+--     map({ "n", "x" }, "<CR>", "viwy :let @/ = 'V'<CR>", { desc = "Select the whole word under the cursor" })
+--    ("n", "<CR>", ":let @/=expand('<cword>')<CR>:set hls<CR>",
+--------------------------------------------------------------------------------
 map("n", "<CR>", "<cmd>let @/=expand('<cword>')<cr>:set hls<cr>")
 
--- " Shortcuts: search/replace
--- " A function is for replacing the current-under-cursor word with
--- " another pattern/word. Simply, it copies the word under cursor and inserts it
--- " into a substitution command call. You only need to type the replacement pattern
--- " and press the Enter key to actually replace the text:
--- map("n", ";", "<cmd>%s/<C-r><C-w>//g<Left><Left><cr>")
---   { expr = true, desc = "Search/replace everywhere for the word under the cursor." }
--- map("n", ";", "<cmd>%s/<C-r><C-w>//g<cr>")
--- )
+--------------------------------------------------------------------------------
+-- Search/Replace
+-- Comments:
+--    A function is for replacing the current-under-cursor word with another
+--    pattern/word. Simply, it copies the word under cursor and inserts it
+--    into a substitution command call. You only need to type the replacement
+--    pattern and press the Enter key to actually replace the text.
+--
+--    I - This flag is used to ignore the "ignore case" or "smartcase" flags.
+--        In other words, it must be an exact match.
+-- Previous incantations (keeping them for future needs):
+--     map("n", ";", "<cmd>%s/<C-r><C-w>//g<Left><Left><cr>")
+--     map("n", "Z", "<cmd>%s/let @/=expand('<cword>')//g<Left><Left><cr>")
+--------------------------------------------------------------------------------
+map("n", ";", [[:%s/<C-r><C-w>//gI<Left><Left><Left>]], {
+  desc = "Selects the whole word under the cursor and puts it in a substitution command where you can type the replacement value.",
+})
 
--- " Cancel : Substitute
--- " Setup command to Cancel the current word with last yanked, cut, etc. word.
--- " Select "S" to replace
--- map({ "n", "x" }, 'S', "ciw<C-r>0<Esc><cr>", "Replace word under cursor.")
-map({ "n", "x" }, "S", "ciw<C-r>0<Esc>")
-
--- Use the <Enter> key to select the whole word under the cursor.
---["<CR>"] = { "viwy   y/\V<C-R>"<CR> :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
---    ["<CR>"] = { "viwy/\V<C-R><CR> :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
---TODO(fix):--    ["<CR>"] = { "viwy :let @/ = '\V'<CR>", "Select the whole word under the cursor"},
+--------------------------------------------------------------------------------
+-- Substitute
+-- Comments: Select "S" to replace the word under the cursor, with the word in
+--           the yank buffer.
+-- Previous incantations (keeping them for future needs):
+--    map({ "n", "x" }, 'S', "ciw<C-r>0<Esc><cr>", "Replace word under cursor.")
+--------------------------------------------------------------------------------
+map(
+  { "n" },
+  "S",
+  "ciw<C-r>0<Esc>",
+  { desc = "Substitutes the whole word under the cursor with the contens of the yank register." }
+)
 
 --******************************************************************************
 --* PLUGIN: Aerial
