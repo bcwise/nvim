@@ -1,7 +1,3 @@
---------------------------------------------------------------------
--- PLUGIN:  mini.comment
--- Comment: A comment/un-commenter.
---------------------------------------------------------------------
 return {
   "echasnovski/mini.comment",
   opts = {
