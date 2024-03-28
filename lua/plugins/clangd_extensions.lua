@@ -2,6 +2,7 @@ return {
   {
     "p00f/clangd_extensions.nvim",
     opts = {
+      filetypes = { "*.cxx" },
       inlay_hints = {
         inline = false,
       },
