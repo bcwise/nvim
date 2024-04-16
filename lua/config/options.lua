@@ -24,6 +24,15 @@ opt.foldenable = false
 cmd("set nowrapscan")
 cmd("set textwidth=80")
 
+--
+-- Clipboard
+--
+if not vim.env.SSH_TTY then
+  -- only set clipboard if not in ssh, to make sure the OSC 52
+  -- integration works automatically. Requires Neovim >= 0.10.0
+  opt.clipboard = "unnamedplus" -- Sync with system clipboard
+end
+
 -- Code Completion
 -- opt.completetop = "menu,menuone,noselect"
 -- opt.completetop = "menu,menuone"
