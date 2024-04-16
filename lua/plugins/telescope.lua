@@ -2,6 +2,7 @@ return {
   -- change some telescope options and a keymap to browse plugin files
   {
     "nvim-telescope/telescope.nvim",
+    lazy = false,
     keys = {
       -- add a keymap to browse plugin files
       -- stylua: ignore
@@ -30,6 +31,7 @@ return {
       build = "make",
       config = function()
         require("telescope").load_extension("fzf")
+        -- require("telescope").load_extension("notify")
       end,
     },
   },
