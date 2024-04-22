@@ -6,5 +6,25 @@ Open user cheatsheet                | :CheatsheetEdit
 Open user cheatsheet from Telescope | <C-E>
 Toggle default cheatsheet Telescope | <C-D>
 
-## lspconfig
-Go to definition                    / 
+Yank History                               | leader>y
+Yank text                                  | y
+Put yanked text after cursor               | p
+Put yanked text before cursor              | P
+Put yanked text after selection            | gp
+Put yanked text before selection           | gP
+Select previous entry through yank history | <c-p>
+Select next entry through yank history     | <c-n>
+
+
+Put indented after cursor (linewise)  | ]p
+Put indented before cursor (linewise) | [p
+Put indented after cursor (linewise)  | ]P
+Put indented before cursor (linewise) | [P
+Put and indent right                  | >p
+Put and indent left                   | <p
+Put before and indent right           | >P
+Put before and indent left            | <P
+Put after applying a filter           | =p
+Put before applying a filter          | =P
+
+## 
