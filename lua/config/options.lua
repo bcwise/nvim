@@ -24,6 +24,7 @@ opt.foldenable = false
 cmd("set nowrapscan")
 cmd("set textwidth=80")
 
+cmd("set conceallevel=0")
 --
 -- Clipboard
 --
