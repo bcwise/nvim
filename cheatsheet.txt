@@ -1,30 +1,98 @@
 ## cheatsheet @quick @reference
-Open (in telescope if installed)    | :Cheatsheet
-Open (in telescope if installed)    | <leader>?
-Force open in floating window       | :Cheatsheet!
-Open user cheatsheet                | :CheatsheetEdit
-Open user cheatsheet from Telescope | <C-E>
-Toggle default cheatsheet Telescope | <C-D>
+Open (in telescope if installed)              | :Cheatsheet
+Open (in telescope if installed)              | <leader>?
+Force open in floating window                 | :Cheatsheet!
+Open user cheatsheet                          | :CheatsheetEdit
+Open user cheatsheet from Telescope           | <C-E>
+Toggle default cheatsheet Telescope           | <C-D>
 
-Yank History                               | leader>y
-Yank text                                  | y
-Put yanked text after cursor               | p
-Put yanked text before cursor              | P
-Put yanked text after selection            | gp
-Put yanked text before selection           | gP
-Select previous entry through yank history | <c-p>
-Select next entry through yank history     | <c-n>
+## Yanky
+Yank History                                  | leader>y
+Yank text                                     | y
+Put yanked text after cursor                  | p
+Put yanked text before cursor                 | P
+Put yanked text after selection               | gp
+Put yanked text before selection              | gP
+Select previous entry through yank history    | <c-p>
+Select next entry through yank history        | <c-n>
+Put indented after cursor (linewise)          | ]p
+Put indented before cursor (linewise)         | [p
+Put indented after cursor (linewise)          | ]P
+Put indented before cursor (linewise)         | [P
+Put and indent right                          | >p
+Put and indent left                           | <p
+Put before and indent right                   | >P
+Put before and indent left                    | <P
+Put after applying a filter                   | =p
+Put before applying a filter                  | =P
+
+## GitSigns
+Hunk stage                                    | <leader>hs
+Hunk undo stage                               | <leader>hu
+Hunk reset                                    | <leader>hr
+Hunk preview                                  | <leader>hp
+Hunk blame line                               | <leader>hb
+Hunk blame toggle                             | <leader>tb
+Hunk diff                                     | <leader>hd
+Hunk diff                                     | <leader>hD
+Hunk toggle deleted                           | <leader>td
+Stage Buffer                                  | <leader>hS
+Reset Buffer                                  | <leader>hR
+Select (Highlight) hunk                       | <leader>hh
+
+## neo-tree
+Explorer NeoTree (Root Dir)                   | <leader>e	  
+Explorer NeoTree (cwd)	                      | <leader>E	  
+Buffer Explorer	(only buffers)                | <leader>be	
+Explorer NeoTree (Root Dir)	                  | <leader>fe	
+Explorer NeoTree (cwd)	                      | <leader>fE	
+Git Explorer                                  | <leader>ge	
 
 
-Put indented after cursor (linewise)  | ]p
-Put indented before cursor (linewise) | [p
-Put indented after cursor (linewise)  | ]P
-Put indented before cursor (linewise) | [P
-Put and indent right                  | >p
-Put and indent left                   | <p
-Put before and indent right           | >P
-Put before and indent left            | <P
-Put after applying a filter           | =p
-Put before applying a filter          | =P
+## vim-notify
+Notify message in Telescope window            | <leader>n
 
-## 
+## Telescope
+Find git files                                | <leader><space>
+Live grep                                     | <leader>?
+Find Buffers                                  | <leader>fb
+Find config file(s)                           | <leader>fc
+Find Files (git, root dir)                    | <leader>ff
+Find Files (git, cwd)                         | <leader>fF
+Find Files (git)                              | <leader>fg
+Find Recent (files)                           | <leader>fr
+Find Recent (cwd)                             | <leader>fR
+Find Commits                                  | <leader>gc
+Find Status                                   | <leader>gs
+Find Registers                                | <leader>s"
+Auto Commands                                 | <leader>sa
+Buffers (current, fuzzy)                      | <leader>sb
+Command History                               | <leader>sc
+Commands                                      | <leader>sC
+Document Diagnostics                          | <leader>sd
+Workspace Diagnostics                         | <leader>sD
+Grep (Root Dir)                               | <leader>sg
+Grep (cwd)                                    | <leader>sG
+Help Pages                                    | <leader>sh
+Search Highlight Groups                       | <leader>sH
+Key Maps                                      | <leader>sk
+Jump to Mark                                  | <leader>sm
+Man Pages                                     | <leader>sM
+Options                                       | <leader>so
+Resume                                        | <leader>sR
+Goto Symbol                                   | <leader>ss
+Goto Symbol (Workspace)                       | <leader>sS
+Word (Root Dir)                               | <leader>sw
+Word (cwd)                                    | <leader>sW
+Selection (Root Dir)(visual mode)             | <leader>sw
+Selection (cwd)     (visual mode)             | <leader>ss
+Colorscheme with Preview                      | <leader>uC
+
+## todo-comments
+Todo                                          | <leader>st
+Todo/Fix/Fixme                                | <leader>sT
+Todo(Trouble)                                 | <leader>Xt
+Todo/Fix/Fixme(Trouble)                       | <leader>xT
+Nex Todo Comment                              | ]t
+Previous Todo Comment                         | [t
+
