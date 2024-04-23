@@ -74,3 +74,5 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     -- vim.api.nvim_set_hl(0, "GitSignsAddNr", { bg = colors.blue5 })
   end,
 })
+
+-- vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh({ bufnr = 0 })]])
