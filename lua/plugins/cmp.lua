@@ -35,6 +35,17 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
+      opts.window = {
+        window = {
+          documentation = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered({
+            winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+          }),
+        },
+      }
+
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -82,14 +93,6 @@ return {
       "onsails/lspkind.nvim",
     },
     opts = function(_, opts)
-      opts.window = {
-        completion = {
-          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-          col_offset = -3,
-          side_padding = 0,
-        },
-      }
-
       opts.formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, item)
