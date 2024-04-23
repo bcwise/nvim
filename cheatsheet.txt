@@ -1,30 +1,58 @@
 ## cheatsheet @quick @reference
 Open (in telescope if installed)              | :Cheatsheet
-Open (in telescope if installed)              | <leader>?
 Force open in floating window                 | :Cheatsheet!
 Open user cheatsheet                          | :CheatsheetEdit
 Open user cheatsheet from Telescope           | <C-E>
 Toggle default cheatsheet Telescope           | <C-D>
 
-## Yanky
-Yank History                                  | leader>y
-Yank text                                     | y
-Put yanked text after cursor                  | p
-Put yanked text before cursor                 | P
-Put yanked text after selection               | gp
-Put yanked text before selection              | gP
-Select previous entry through yank history    | <c-p>
-Select next entry through yank history        | <c-n>
-Put indented after cursor (linewise)          | ]p
-Put indented before cursor (linewise)         | [p
-Put indented after cursor (linewise)          | ]P
-Put indented before cursor (linewise)         | [P
-Put and indent right                          | >p
-Put and indent left                           | <p
-Put before and indent right                   | >P
-Put before and indent left                    | <P
-Put after applying a filter                   | =p
-Put before applying a filter                  | =P
+## General
+Prev Buffer                                   | [b
+Next Buffer                                   | ]b
+:Lazy                                         |  L
+Previous Quickfix                             | [q
+Next Quickfix                                 | ]q
+Format                                        | <leader>cf
+Line Diagnostics                              | <leader>cd
+Previous Diagnostic                           | [d
+Next Diagnostic                               | ]d
+Previous Error                                | [e
+Next Error                                    | ]e
+Previous Warning                              | [w
+Next Warning                                  | ]w
+Toggle Auto Format (Global)                   | <leader>uf
+Toggle Auto Format (Buffer)                   | <leader>uF
+Toggle Spelling                               | <leader>us
+Toggle Word Wrap                              | <leader>uw
+Toggle Relative Line Numbers                  | <leader>uL
+Toggle Diagnostics                            | <leader>ud
+Toggle Conceal                                | <leader>uc
+Toggle Inlay Hints                            | <leader>uh
+Toggle Treesitter Highlight                   | <leader>uT
+Toggle Background                             | <leader>ub
+Lazygit (Root Dir)                            | <leader>gg
+Lazygit (cwd)                                 | <leader>gG
+Git Blame Line                                | <leader>gb
+Quit All                                      | <leader>qq
+Inspect Pos                                   | <leader>ui
+LazyVim Changelog                             | <leader>L
+Terminal (Root Dir)                           | <leader>ft
+Terminal (cwd)                                | <leader>fT
+Terminal (Root Dir)                           | <c-/>
+which_key_ignore                              | <c-_>               
+Enter Normal Mode                             | <esc><esc>          
+Hide Terminal                                 | <C-/>               
+Other Window                                  | <leader>ww          
+Delete Window                                 | <leader>wd          
+Split Window Below                            | <leader>w-          
+Split Window Right                            | <leader>w|          
+Split Window Below                            | <leader>-           
+Split Window Right                            | <leader>|           
+Last Tab                                      | <leader><tab>l      
+First Tab                                     | <leader><tab>f      
+New Tab                                       | <leader><tab><tab>	
+Next Tab                                      | <leader><tab>]      
+Close Tab                                     | <leader><tab>d      
+Previous Tab                                  | <leader><tab>[      
 
 ## GitSigns
 Hunk stage                                    | <leader>hs
@@ -40,6 +68,22 @@ Stage Buffer                                  | <leader>hS
 Reset Buffer                                  | <leader>hR
 Select (Highlight) hunk                       | <leader>hh
 
+## LSP
+Lsp Info	                                    | <leader>cl	
+Goto Definition	                              | gd          
+Goto Declaration	                            | gD          
+References	                                  | gr          
+Goto Implementation	                          | gI          
+Goto T[y]pe Definition	                      | gy          
+Hover	                                        | K           
+Signature Help	                              | gK          
+Signature Help	                              | <c-k>       
+Code Action	                                  | <leader>ca	
+Run Codelens	                                | <leader>cc	
+Refresh & Display Codelens                    | <leader>cC	
+Source Action	                                | <leader>cA	
+Rename	                                      | <leader>cr	
+
 ## neo-tree
 Explorer NeoTree (Root Dir)                   | <leader>e	  
 Explorer NeoTree (cwd)	                      | <leader>E	  
@@ -48,9 +92,16 @@ Explorer NeoTree (Root Dir)	                  | <leader>fe
 Explorer NeoTree (cwd)	                      | <leader>fE	
 Git Explorer                                  | <leader>ge	
 
-
 ## vim-notify
 Notify message in Telescope window            | <leader>n
+
+## Trouble
+Location List (Trouble)                       | <leader>xL 
+Quickfix List (Trouble)                       | <leader>xQ
+Document Diagnostics (Trouble)                | <leader>xx
+Workspace Diagnostics (Trouble)               | <leader>xX
+Previous Trouble/Quickfix Item                | [q        
+Next Trouble/Quickfix Item                    | ]q        
 
 ## Telescope
 Find git files                                | <leader><space>
@@ -88,11 +139,32 @@ Selection (Root Dir)(visual mode)             | <leader>sw
 Selection (cwd)     (visual mode)             | <leader>ss
 Colorscheme with Preview                      | <leader>uC
 
-## todo-comments
+## Todo-Comments
 Todo                                          | <leader>st
 Todo/Fix/Fixme                                | <leader>sT
 Todo(Trouble)                                 | <leader>Xt
 Todo/Fix/Fixme(Trouble)                       | <leader>xT
 Nex Todo Comment                              | ]t
 Previous Todo Comment                         | [t
+
+## Yanky
+Open Yank History                             | <leader>p	
+Put and Indent Left                           | <p	
+Put Before and Indent Left                    | <P	
+Put After Applying a Filter                   | =p	
+Put Before Applying a Filter                  | =P	
+Put and Indent Right                          | >p	
+Put Before and Indent Right                   | >P	
+Put Indented Before Cursor (Linewise)         | [p	
+Put Indented Before Cursor (Linewise)         | [P	
+Cycle Forward Through Yank History            | [y	
+Put Indented After Cursor (Linewise)          | ]p	
+Put Indented After Cursor (Linewise)          | ]P	
+Cycle Backward Through Yank History           | ]y	
+Put Yanked Text After Selection               | gp	
+Put Yanked Text Before Selection              | gP	
+Put Yanked Text After Cursor                  | p	  
+Put Yanked Text Before Cursor                 | P	  
+Yank Text                                     | y	  
+
 
