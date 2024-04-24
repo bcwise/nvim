@@ -3,10 +3,10 @@ return {
     "lewis6991/gitsigns.nvim",
     opts = {
       signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
+        add = { text = "▎" }, -- (green) vertical bar
+        change = { text = "▎" }, -- (orange) vertical bar
         delete = { text = "" },
-        topdelete = { text = "" },
+        topdelete = { text = "" }, -- (pink) right arrowhead
         changedelete = { text = "▎" },
         untracked = { text = "▎" },
       },
