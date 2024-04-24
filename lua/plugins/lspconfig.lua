@@ -143,6 +143,7 @@ return {
           cmd = {
             "clangd",
             -- "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
+            -- "-style=/software/clang/.clang-format"
             "-j=6",
             "--background-index",
             "--clang-tidy",
