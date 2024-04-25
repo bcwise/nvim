@@ -81,73 +81,25 @@ return {
       formatting_options = nil,
       timeout_ms = nil,
     },
-
-    ---@type lspconfig.options
-    servers = {
-      -- tsserver will be automatically installed with mason and loaded with lspconfig
-      tsserver = {},
-    },
-    -- you can do any additional lsp server setup here
-    -- return true if you don't want this server to be setup with lspconfig
-    ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-    setup = {
-      -- example to setup with typescript.nvim
-      tsserver = function(_, opts)
-        require("typescript").setup({ server = opts })
-        return true
-      end,
-      -- Specify * to use this function as a fallback for any server
-      -- ["*"] = function(server, opts) end,
-    },
   },
 
-  -- add pyright to lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
-      },
-    },
-  },
-
+  --*******************************************
+  -- Server: clangd
+  --*******************************************
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        -- At work, some things don't work because of limited network access.
-        -- So we will install some packages (shfmt, stylua, etc), and configure
-        -- them here (and tell Mason not to install them).   THIS IS ONLY FOR
-        -- WORK.
-        -- stylua = {
-          -- mason = false,
-          -- cmd = { "stylua" },
-          -- filetypes = { "lua" },
-          -- root_dir = function(fname)
-          --   return require("lspconfig.util").root_pattern(
-          --     ".luarc.json",
-          --     ".luarc.jsonc",
-          --     ".luacheckrc",
-          --     ".stylua.toml",
-          --     "stylua.toml",
-          --     "selene.toml",
-          --     "selene.yml",
-          --     ".git"),
-          --   )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-          --     fname
-          --   ) or require("lspconfig.util").find_git_ancestor(fname)
-          -- end,
-          -- -- root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
-        },
-        -- Ensure mason installs the server
         clangd = {
           keys = {
             { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
           },
           mason = false,
+          filetypes = {
+            "cxx",
+            "c",
+            "cpp",
+          },
           root_dir = function(fname)
             return require("lspconfig.util").root_pattern(
               "Makefile",
@@ -184,12 +136,92 @@ return {
           },
         },
       },
-      setup = {
-        clangd = function(_, opts)
-          local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
-          require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
-          return false
-        end,
+    },
+    setup = {
+      clangd = function(_, opts)
+        local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
+        require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
+        return false
+      end,
+    },
+  },
+
+  --*******************************************
+  -- Server: pyright
+  --*******************************************
+  -- pyright will be automatically installed with mason and loaded with lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        pyright = {},
       },
     },
-  }
+  },
+
+  --*******************************************
+  -- Server: stylua
+  --*******************************************
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       -- At work, some things don't work because of limited network access.
+  --       -- So we will install some packages (shfmt, stylua, etc), and configure
+  --       -- them here (and tell Mason not to install them).   THIS IS ONLY FOR
+  --       -- WORK.
+  --       stylua = {
+  --         mason = false,
+  --         cmd = { "stylua" },
+  --         filetypes = { "lua" },
+  --         root_dir = function(fname)
+  --           return require("lspconfig.util").root_pattern(
+  --             ".luarc.json",
+  --             ".luarc.jsonc",
+  --             ".luacheckrc",
+  --             ".stylua.toml",
+  --             "stylua.toml",
+  --             "selene.toml",
+  --             "selene.yml",
+  --             ".git"),
+  --         )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+  --             fname
+  --           ) or require("lspconfig.util").find_git_ancestor(fname)
+  --         end,
+  --         -- root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
+  --       },
+  --     },
+  --   },
+  -- },
+
+  ---@type lspconfig.options
+  --*******************************************
+  -- Server: ts
+  --*******************************************
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       --*******************************************
+  --       -- Server: ts
+  --       --*******************************************
+  --       -- tsserver will be automatically installed with mason and loaded with lspconfig
+  --       tsserver = {
+  --         Mason = false,
+  --       },
+  --     },
+  --     -- you can do any additional lsp server setup here
+  --     -- return true if you don't want this server to be setup with lspconfig
+  --     ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+  --     setup = {
+  --       -- example to setup with typescript.nvim
+  --       tsserver = function(_, opts)
+  --         require("typescript").setup({ server = opts })
+  --         return true
+  --       end,
+  --       -- Specify * to use this function as a fallback for any server
+  --       -- ["*"] = function(server, opts) end,
+  --     },
+  --   },
+  -- },
+}
