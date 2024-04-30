@@ -149,22 +149,22 @@ Previous Todo Comment                         | [t
 
 ## Yanky
 Open Yank History                             | <leader>p	
+Yank Text                                     | y	  
+Put Yanked Text After Cursor                  | p	  
+Put Yanked Text Before Cursor                 | P	  
+Put Yanked Text After Selection               | gp	
+Put Yanked Text Before Selection              | gP	
+Cycle Forward Through Yank History            | [y	
+Cycle Backward Through Yank History           | ]y	
+Put Indented After Cursor (Linewise)          | ]p	
+Put Indented After Cursor (Linewise)          | ]P	
+Put and Indent Right                          | >p	
 Put and Indent Left                           | <p	
+Put Before and Indent Right                   | >P	
 Put Before and Indent Left                    | <P	
 Put After Applying a Filter                   | =p	
 Put Before Applying a Filter                  | =P	
-Put and Indent Right                          | >p	
-Put Before and Indent Right                   | >P	
-Put Indented Before Cursor (Linewise)         | [p	
-Put Indented Before Cursor (Linewise)         | [P	
-Cycle Forward Through Yank History            | [y	
-Put Indented After Cursor (Linewise)          | ]p	
-Put Indented After Cursor (Linewise)          | ]P	
-Cycle Backward Through Yank History           | ]y	
-Put Yanked Text After Selection               | gp	
-Put Yanked Text Before Selection              | gP	
-Put Yanked Text After Cursor                  | p	  
-Put Yanked Text Before Cursor                 | P	  
-Yank Text                                     | y	  
+Cycle Forward Through Yank History            | <c-n>
+Cycle Backward Through Yank History           | <c-p>
 
 

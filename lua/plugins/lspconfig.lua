@@ -69,7 +69,7 @@ return {
     -- Be aware that you also will need to properly configure your LSP server to
     -- provide the code lenses.
     codelens = {
-      enabled = false,
+      enabled = true,
     },
 
     -- add any global capabilities here
@@ -117,10 +117,11 @@ return {
             offsetEncoding = { "utf-16" },
           },
           cmd = {
+            -- "-style=/software/clang/.clang-format",
             "clangd",
+            "-j=10",
             -- "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
-            -- "-style=/software/clang/.clang-format"
-            "-j=6",
+            -- "-j=4",
             "--background-index",
             "--clang-tidy",
             "--clang-tidy-checks=*",

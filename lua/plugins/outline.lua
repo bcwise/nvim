@@ -8,8 +8,6 @@ return {
       -- Add <ctrl>o to open the outline
       { "<leader>o", false },
       { "<leader>o", "<cmd>Outline<cr>", desc = "Toggle Outline" },
-
-      { "<leader>cs", "<cmd>Outline<cr>", desc = "Toggle Outline" },
     },
     cmd = "Outline",
     opts = function()

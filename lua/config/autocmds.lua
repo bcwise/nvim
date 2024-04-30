@@ -63,9 +63,9 @@ vim.api.nvim_create_augroup("CursorHighlightGroup", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   group = "CursorHighlightGroup",
   callback = function()
-    -- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "LightRed", bold })
+    vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "LightRed", bold })
     vim.api.nvim_set_hl(0, "LineNr", { fg = colors.blue2 })
-    -- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "LightGreen", bold })
+    vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "LightGreen", bold })
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "Yellow", bg = colors.cursor_line_bg, bold })
 
     vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = colors.gitSigns.add, bold })

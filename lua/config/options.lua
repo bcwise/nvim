@@ -25,132 +25,48 @@ cmd("set nowrapscan")
 cmd("set textwidth=80")
 
 cmd("set conceallevel=0")
---
+
+---------------------------------------------------
+-- Abbreviations (typo corrections)
+---------------------------------------------------
+cmd("cnoreabbrev WQ wq")
+cmd("cnoreabbrev Wq wq")
+cmd("cnoreabbrev We w")
+cmd("cnoreabbrev W  w")
+cmd("cnoreabbrev Q  q")
+cmd("cnoreabbrev X  x")
+
+---------------------------------------------------
 -- Clipboard
---
+---------------------------------------------------
 if not vim.env.SSH_TTY then
   -- only set clipboard if not in ssh, to make sure the OSC 52
   -- integration works automatically. Requires Neovim >= 0.10.0
   opt.clipboard = "unnamedplus" -- Sync with system clipboard
 end
 
+---------------------------------------------------
 -- Code Completion
+---------------------------------------------------
 -- opt.completetop = "menu,menuone,noselect"
 -- opt.completetop = "menu,menuone"
 -- opt.completeopt = "menu,menuone,noinsert,noselect"
 
--- Cursor Line and Column ------------------------------------------------------
--- Row --
--- opt.cursorline = true
+---------------------------------------------------
+-- Cursor & Column Line
+---------------------------------------------------
 opt.cursorline = true
 opt.cursorcolumn = true
 opt.cursorlineopt = "both"
 
--- vim.o.CursorColumn  = { fg="#ffff00",      bg="#505050", gui="#000000" }
-
-api.nvim_set_hl(0, "LineNrAbove", { fg = "blue" })
--- api.nvim_set_hl(0, 'LineNr', { fg='yellow' })
-api.nvim_set_hl(0, "LineNrBelow", { fg = "magenta" })
-api.nvim_set_hl(0, "CursorLineNr", { fg = "red" })
-
--- vim.oCursorLine    = { fg=NONE,      bg="#505050", gui=NONE },
--- vim.o.CursorLineNr  = { fg="#ffff00", bg="#2b5070", gui=NONE },
-
--- vim.o.ruler = true
-
--- --,number
---
--- Highlight Cursor number row
--- highlight CursorLineNr{gui=bold, guifg=Yellow, guibg=Black}
-
--- " highlight clear cursorline
--- augroup CLClear
---     set cursorline
---     "autocmd! ColorScheme * highlight CursorLineNR cterm=bold ctermbg=DarkGrey ctermfg=Yellow
---     autocmd! ColorScheme * highlight CursorLineNr gui=bold guifg=Yellow guibg=Black
--- augroup End
---
--- " highlight CursorLineNR cterm=bold
--- augroup CLNRSet
---     set cursorline
---     "autocmd! ColorScheme * highlight CursorLineNR cterm=bold ctermbg=DarkGrey ctermfg=Yellow
---     autocmd! ColorScheme * highlight CursorLineNr cterm=NONE ctermbg=DarkGrey ctermfg=Grey gui=bold guifg=Yellow guibg=Black
--- augroup END
---
--- --Highlight Cursor number row
--- highlight CursorLineNr gui=bold guifg=Yellow guibg=Black
---
--- --highlight clear cursorline
--- augroup CLClear
---     set cursorline
---     "autocmd! ColorScheme * highlight CursorLineNR cterm=bold ctermbg=DarkGrey ctermfg=Yellow
---     autocmd! ColorScheme * highlight CursorLineNr gui=bold guifg=Yellow guibg=Black
--- augroup End
---
--- -- highlight CursorLineNR cterm=bold
--- augroup CLNRSet
---     set cursorline
---     "autocmd! ColorScheme * highlight CursorLineNR cterm=bold ctermbg=DarkGrey ctermfg=Yellow
---     autocmd! ColorScheme * highlight CursorLineNr cterm=NONE ctermbg=DarkGrey ctermfg=Grey gui=bold guifg=Yellow guibg=Black
--- augroup END
+---------------------------------------------------
+-- Highlights
+---------------------------------------------------
+-- Are done in the lua/config/autocmds.lua file
 
 ---------------------------------------------------
--- Line Number
----------------------------------------------------
--- Make these for all colorschemes so the line number column doesn't change
--- autocmd ColorScheme * highlight LineNr       ctermfg=240 ctermbg=0 guifg=DarkGray guibg=#0C0E54
--- autocmd ColorScheme * highlight LineNr       ctermfg=240 ctermbg=0 guifg=DarkGray guibg=#0A0C45
--- autocmd ColorScheme * highlight LineNr       ctermfg=240 ctermbg=0 guifg=DarkGray guibg=#090A39
--- autocmd ColorScheme * highlight LineNr       ctermfg=240 ctermbg=0 guifg=DarkGray guibg=#29465B
--- autocmd ColorScheme * highlight LineNr       ctermfg=240 ctermbg=0 guifg=#2b506e guibg=#252567
--- autocmd ColorScheme * highlight CursorLineNr cterm=underline ctermfg=11 gui=bold guibg=DarkGray guifg=Yellow
-
---------------------------------------
--- Cursor Column
-----------------------------------
--- set cursorcolumn
--- " highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
--- highlight CursorColumn ctermfg=Black ctermbg=NONE cterm=bold gui=bold"guifg=Red guibg=yellow gui=Bold
-
---
--- -- Column --
---
--- "----------------------------------
--- " Cursor Line
--- "----------------------------------
---
--- set cursorline
--- set cursorlineopt=line,number
---
--- " Highlight Cursor number row
--- highlight CursorLineNr gui=bold guifg=Yellow guibg=Black
---
--- " highlight clear cursorline
--- augroup CLClear
---     set cursorline
---     "autocmd! ColorScheme * highlight CursorLineNR cterm=bold ctermbg=DarkGrey ctermfg=Yellow
---     autocmd! ColorScheme * highlight CursorLineNr gui=bold guifg=Yellow guibg=Black
--- augroup End
---
--- " highlight CursorLineNR cterm=bold
--- augroup CLNRSet
---     set cursorline
---     "autocmd! ColorScheme * highlight CursorLineNR cterm=bold ctermbg=DarkGrey ctermfg=Yellow
---     autocmd! ColorScheme * highlight CursorLineNr cterm=NONE ctermbg=DarkGrey ctermfg=Grey gui=bold guifg=Yellow guibg=Black
--- augroup END
---
--- "----------------------------------
--- " Cursor Column
--- "----------------------------------
--- set cursorcolumn
--- " highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
--- highlight CursorColumn ctermfg=Black ctermbg=NONE cterm=bold gui=bold"guifg=Red guibg=yellow gui=Bold
---
--- " Highlight the cursor column
--- " guibg: background for the whole column
--- " gui:   for the whole thing
-
 -- For Completion
+---------------------------------------------------
 vim.schedule(function()
   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
   vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
