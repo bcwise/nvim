@@ -84,33 +84,45 @@ return {
       cmp.setup({
         lazy = false,
         completion = cmp.mapping.preset.cmdline({ completeopt = "menu,menuone,noinsert" }),
+
         formatting = {
-          -- fields = { "kind", "abbr", "menu" },
-          fields = { "kind", "menu", "abbr" },
-          format = lspkind.cmp_format({
-            with_text = false,
-            maxwidth = 50,
-            show_labelDetails = false,
-            mode = "symbol_text",
-            menu = {
-              buffer = "[Buffer]",
-              calc = "[Calc]",
-              cmdline = "[Cmd]",
-              friendly = "[Friend]",
-              latex_symbols = "[LaTeX]",
-              luasnip = "[LuaSnip]",
-              lsp = "[LSP]",
-              nvim_lsp = "[LSP]",
-              nvim_lua = "[Lua]",
-              path = "[PATH]",
-              omni = "[Omni]",
-              snippy = "[Snippy]",
-              treesitter = "[Tree]",
-              ultisnips = "[US]",
-              vsnip = "[VSnip]",
-            },
-          }),
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+            return kind
+          end,
         },
+
+        -- formatting = {
+        --   -- fields = { "kind", "abbr", "menu" },
+        --   fields = { "kind", "menu", "abbr" },
+        --   format = lspkind.cmp_format({
+        --     with_text = false,
+        --     maxwidth = 50,
+        --     show_labelDetails = false,
+        --     mode = "symbol_text",
+        --     menu = {
+        --       buffer = "[Buffer]",
+        --       calc = "[Calc]",
+        --       cmdline = "[Cmd]",
+        --       friendly = "[Friend]",
+        --       latex_symbols = "[LaTeX]",
+        --       luasnip = "[LuaSnip]",
+        --       lsp = "[LSP]",
+        --       nvim_lsp = "[LSP]",
+        --       nvim_lua = "[Lua]",
+        --       path = "[PATH]",
+        --       omni = "[Omni]",
+        --       snippy = "[Snippy]",
+        --       treesitter = "[Tree]",
+        --       ultisnips = "[US]",
+        --       vsnip = "[VSnip]",
+        --     },
+        --   }),
+        -- },
 
         -- experimental = { ghost_text = true },
         -- mapping = cmp.mapping.preset.insert({
