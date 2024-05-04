@@ -63,6 +63,238 @@ return {
     --     },
     --   })
     -- end,
+    config = function()
+      local cmp = require("cmp")
+      local lspkind = require("lspkind")
+
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
+      cmp.setup({
+        lazy = false,
+        completion = cmp.mapping.preset.cmdline({ completeopt = "menu,menuone,noinsert" }),
+        formatting = {
+          -- fields = { "kind", "abbr", "menu" },
+          fields = { "kind", "menu", "abbr" },
+          format = lspkind.cmp_format({
+            with_text = false,
+            maxwidth = 50,
+            show_labelDetails = false,
+            mode = "symbol_text",
+            menu = {
+              buffer = "[Buffer]",
+              calc = "[Calc]",
+              cmdline = "[Cmd]",
+              friendly = "[Friend]",
+              latex_symbols = "[LaTeX]",
+              luasnip = "[LuaSnip]",
+              lsp = "[LSP]",
+              nvim_lsp = "[LSP]",
+              nvim_lua = "[Lua]",
+              path = "[PATH]",
+              omni = "[Omni]",
+              snippy = "[Snippy]",
+              treesitter = "[Tree]",
+              ultisnips = "[US]",
+              vsnip = "[VSnip]",
+            },
+          }),
+        },
+
+        -- experimental = { ghost_text = true },
+        -- mapping = cmp.mapping.preset.insert({
+        --   ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        --   ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        --   ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        --   ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        --   ["<C-Space>"] = cmp.mapping.complete({}),
+        --   ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        --   ["<Tab>"] = cmp.mapping(function(fallback)
+        --
+        --     if cmp.visible() then
+        --       cmp.select_next_item()
+        --     elseif require("luasnip").expand_or_jumpable() then
+        --       require("luasnip").expand_or_jump()
+        --     elseif cmp.has_words_before() then
+        --       cmp.complete()
+        --     else
+        --       fallback()
+        --     end
+        --   end, { "i", "s" }),
+        --   ["<S-Tab>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --       cmp.select_prev_item()
+        --     elseif luasnip.jumpable(-1) then
+        --       luasnip.jump(-1)
+        --     else
+        --       fallback()
+        --     end
+        --   end, { "i", "s" }),
+        --   ["<C-l>"] = cmp.mapping(function(fallback)
+        --     if luasnip.expandable() then
+        --       luasnip.expand()
+        --     elseif luasnip.expand_or_jumpable() then
+        --       luasnip.expand_or_jump()
+        --     else
+        --       fallback()
+        --     end
+        --   end, {
+        --     "i",
+        --     "s",
+        --   }),
+        --   ["<C-l>"] = cmp.mapping(function(fallback)
+        --     if luasnip.expandable() then
+        --       luasnip.expand()
+        --     elseif luasnip.expand_or_jumpable() then
+        --       luasnip.expand_or_jump()
+        --     else
+        --       fallback()
+        --     end
+        --   end, {
+        --     "i",
+        --     "s",
+        --   }),
+        --   ["<C-h>"] = cmp.mapping(function(fallback)
+        --     if luasnip.jumpable(-1) then
+        --       luasnip.jump(-1)
+        --     else
+        --       fallback()
+        --     end
+        --   end, {
+        --     "i",
+        --     "s",
+        --   }),
+        -- }),
+        mapping = {
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = function(fallback)
+            -- Reference: https://github.com/hrsh7th/nvim-cmp/issues/429#issuecomment-954121524
+            cmp.abort()
+          end,
+          ["<Space>"] = function(fallback)
+            -- Reference: https://github.com/hrsh7th/nvim-cmp/issues/429#issuecomment-954121524
+            cmp.abort()
+            fallback()
+          end,
+          ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert, -- Don't delete the word to the right
+            select = false,
+          }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+              -- expand_or_locally_jumpable prevents the snippet from being re-entered.
+              --
+              -- Reference: https://github.com/L3MON4D3/LuaSnip/issues/799
+              --
+              -- elseif require("luasnip").expand_or_jumpable() then
+              --
+              -- There's apparently other approaches that do the same thing which I haven't tried.
+              --
+              -- e.g. ``region_check_events`` from https://github.com/L3MON4D3/LuaSnip/issues/770
+              -- e.g. ``leave_snippet`` from https://github.com/L3MON4D3/LuaSnip/issues/258#issuecomment-1011938524
+              --
+            elseif require("luasnip").expand_or_locally_jumpable() then
+              vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+            else
+              fallback()
+            end
+          end, {
+            "i",
+            "s",
+          }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif require("luasnip").jumpable(-1) then
+              vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+            else
+              fallback()
+            end
+          end, {
+            "i",
+            "s",
+          }),
+        },
+
+        sources = {
+          { name = "copilot", max_item_count = 3 },
+          { name = "nvim_lsp", priority = 20, max_item_count = 5, entry_filter = limit_lsp_types },
+          { name = "buffer", priority = 10, keyword_length = 2, max_item_count = 5, option = buffer_option },
+          { name = "npm", priority = 9 },
+          { name = "git" },
+          { name = "luasnip", max_item_count = 5 },
+          { name = "friendly-snippets", priority = 7, max_item_count = 5 },
+          { name = "nvim_lua" },
+          -- { name = "spell", priority = 5 },
+          {
+            name = "spell",
+            option = {
+              keep_all_entries = false,
+              enable_in_context = function()
+                return require("cmp.config.context").in_treesitter_capture("spell")
+              end,
+            },
+          },
+          { name = "cmdline" },
+          { name = "path", priority = 10 },
+          { name = "calc" },
+          { name = "omni", priority = 10 },
+          { name = "emoji" },
+        },
+
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+          end,
+        },
+        window = {
+          documentation = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered({
+            winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+          }),
+        }, -- window
+      }) -- cmp.setp()
+
+      -- -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+
+      -- cmp.setp.cmdline({ "/", "?" }, {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = {
+      --     { name = "buffer" },
+      --   },
+      -- })
+
+      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+      })
+
+      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    end,
 
     opts = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -105,17 +337,6 @@ return {
       --   end,
       -- }
 
-      window = {
-        -- window = {
-        documentation = cmp.config.window.bordered(),
-        completion = cmp.config.window.bordered({
-          winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-          col_offset = -3,
-          side_padding = 0,
-        }),
-        -- },
-      }
-
       local buffer_option = {
         -- Complete from all visible buffers (splits)
         get_bufnrs = function()
@@ -136,111 +357,6 @@ return {
         expand = function(args)
           require("luasnip").lsp_expand(args.body)
         end,
-      }
-
-      -- experimental = { ghost_text = true },
-      mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete({}),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif require("luasnip").expand_or_jumpable() then
-            require("luasnip").expand_or_jump()
-          elseif cmp.has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<C-l>"] = cmp.mapping(function(fallback)
-          if luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<C-l>"] = cmp.mapping(function(fallback)
-          if luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<C-h>"] = cmp.mapping(function(fallback)
-          if luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-      })
-
-      -- You should specify your *installed* sources.
-      sources = {
-        {
-          name = "copilot",
-          priority = 11,
-          max_item_count = 3,
-        },
-        {
-          name = "nvim_lsp",
-          priority = 10,
-          -- Limits LSP results to specific types based on line context (Fields, Methods, Variables)
-          entry_filter = limit_lsp_types,
-        },
-        { name = "npm", priority = 9 },
-        { name = "git", priority = 7 },
-        {
-          name = "luasnip",
-          priority = 7,
-          max_item_count = 5,
-        },
-        {
-          name = "friendly-snippets",
-          priority = 7,
-          max_item_count = 5,
-        },
-        {
-          name = "buffer",
-          priority = 7,
-          keyword_length = 5,
-          max_item_count = 10,
-          option = buffer_option,
-        },
-        { name = "nvim_lua", priority = 5 },
-        { name = "spell", priority = 5 },
-        { name = "cmdline", priority = 4 },
-        { name = "path", priority = 4 },
-        { name = "calc", priority = 3 },
-        { name = "omni", priority = 3 },
-        { name = "emoji", priority = 3 },
       }
 
       -- sorting = {
@@ -285,16 +401,35 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      opts.formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, item)
-          local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, item)
-          local strings = vim.split(kind.kind, "%s", { trimempty = true })
-          kind.kind = " " .. (strings[1] or "") .. " "
-          kind.menu = "    (" .. (strings[2] or "") .. ")"
-          return kind
-        end,
-      }
+      -- opts.formatting = {
+      --   fields = { "kind", "abbr", "menu" },
+      --   format = function(entry, item)
+      --     local kind = require("lspkind").cmp_format({
+      --       show_labelDetails = true,
+      --       mode = "symbol_text",
+      --       -- maxwidth = 50,
+      --       -- minwidth = 40,
+      --       -- menu = {
+      --       --   buffer = "[Buffer]",
+      --       --   calc = "[Calc]",
+      --       --   latex_symbols = "[Latex]",
+      --       --   LuaSnip = "[LuaSnip]",
+      --       --   nvim_lsp = "[LSP]",
+      --       --   nvim_lua = "[Lua]",
+      --       --   path = "[PATH]",
+      --       --   omni = "[Omni]",
+      --       --   snippy = "[Snippy]",
+      --       --   treesitter = "[Tree]",
+      --       --   ultisnips = "[US]",
+      --       --   vsnip = "[VSnip]",
+      --       -- },
+      --     })(entry, item)
+      --     local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      --     kind.kind = (strings[1] or "")
+      --     kind.menu = "    (" .. (strings[2] or "") .. ")"
+      --     return kind
+      --   end,
+      -- }
     end,
   },
 }
