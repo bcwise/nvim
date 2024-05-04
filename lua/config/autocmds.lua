@@ -57,9 +57,16 @@ local colors = {
   teal = "#1abc9c",
   yellow = "#e0af68",
 }
--- -- Define the augroup
+
+----------------------------------------------------
+-- Define the augroup
+---------------------------------------------------
+----------------------------------------------------
 vim.api.nvim_create_augroup("CursorHighlightGroup", { clear = true })
+
+----------------------------------------------------
 -- Define autocmds within the group
+----------------------------------------------------
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   group = "CursorHighlightGroup",
   callback = function()

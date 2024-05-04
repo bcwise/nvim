@@ -20,11 +20,7 @@ window_opt.number = true
 window_opt.numberwidth = 4
 window_opt.signcolumn = "yes:2"
 
-opt.foldenable = false
-cmd("set nowrapscan")
-cmd("set textwidth=80")
-
-cmd("set conceallevel=0")
+vim.o.termguicolors = true --Set colorscheme (order is important here)
 
 ---------------------------------------------------
 -- Abbreviations (typo corrections)
@@ -51,21 +47,16 @@ end
 -- opt.completetop = "menu,menuone,noselect"
 -- opt.completetop = "menu,menuone"
 -- opt.completeopt = "menu,menuone,noinsert,noselect"
+-- vim.schedule(function()}
+
+opt.foldenable = false
+cmd("set nowrapscan")
+cmd("set textwidth=80")
+
+cmd("set conceallevel=0")
 
 ---------------------------------------------------
--- Cursor & Column Line
----------------------------------------------------
-opt.cursorline = true
-opt.cursorcolumn = true
-opt.cursorlineopt = "both"
-
----------------------------------------------------
--- Highlights
----------------------------------------------------
--- Are done in the lua/config/autocmds.lua file
-
----------------------------------------------------
--- For Completion
+-- Colors: setup
 ---------------------------------------------------
 vim.schedule(function()
   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
@@ -109,3 +100,50 @@ vim.schedule(function()
   vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
   vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
 end)
+---------------------------------------------------
+-- Cursor & Column Line
+---------------------------------------------------
+opt.cursorline = true
+opt.cursorcolumn = true
+opt.cursorlineopt = "both"
+
+----------------------------------------
+---- GUI
+----------------------------------------
+vim.o.mouse = "a" -- Enable mouse mode
+vim.o.breakindent = true -- Enable break indent
+
+---------------------------------------------------
+-- Highlights
+---------------------------------------------------
+-- Are done in the lua/config/autocmds.lua file
+
+----------------------------------------
+---- Search Settings
+----------------------------------------
+vim.o.ignorecase = true --Case insensitive searching UNLESS /C or capital in search
+vim.o.smartcase = true
+vim.o.hlsearch = true -- Set Highlights on search
+
+----------------------------------------
+---- Sign Column: Number and Sign column settings
+----------------------------------------
+global.relativenumber = false
+global.number = true
+global.numberwidth = 4
+global.signcolumn = "yes:2"
+
+----------------------------------------
+---- System Interaction
+----------------------------------------
+opt.updatetime = 250 -- Decrease update time
+
+----------------------------------------
+---- Text (on the screen)
+----------------------------------------
+opt.foldenable = false
+cmd("set nowrapscan")
+cmd("set textwidth=80")
+cmd("set conceallevel=0")
+
+--==============================================================================

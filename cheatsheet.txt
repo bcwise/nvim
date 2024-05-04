@@ -139,6 +139,11 @@ Selection (Root Dir)(visual mode)             | <leader>sw
 Selection (cwd)     (visual mode)             | <leader>ss
 Colorscheme with Preview                      | <leader>uC
 
+## Typescript
+Typescript Organize Inports                   | <leader>co
+Typescript Rename File                        |  <leader>cR
+
+
 ## Todo-Comments
 Todo                                          | <leader>st
 Todo/Fix/Fixme                                | <leader>sT
