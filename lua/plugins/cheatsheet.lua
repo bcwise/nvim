@@ -10,7 +10,7 @@ return {
       { "nvim-lua/plenary.nvim" },
     },
     keys = {
-      { "<leader>cs", "<cmd>Cheatsheet<cr>", desc = "Toggle Cheatsheets open/close" },
+      { "<leader>ch", "<cmd>Cheatsheet<cr>", desc = "Toggle Cheatsheets open/close" },
     },
     opts = {
       -- Whether to show bundled cheetsheets

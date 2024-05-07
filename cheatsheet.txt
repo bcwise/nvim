@@ -1,4 +1,5 @@
 ## cheatsheet @quick @reference
+Toggle Cheatsheet open/close in telescope.    | ,ch
 Open (in telescope if installed)              | :Cheatsheet
 Force open in floating window                 | :Cheatsheet!
 Open user cheatsheet                          | :CheatsheetEdit
@@ -98,8 +99,8 @@ Notify message in Telescope window            | <leader>n
 ## Trouble
 Location List (Trouble)                       | <leader>xL 
 Quickfix List (Trouble)                       | <leader>xQ
-Document Diagnostics (Trouble)                | <leader>xx
-Workspace Diagnostics (Trouble)               | <leader>xX
+Trouble diagnostics togggle (Trouble)         | <leader>xx
+Trouble symbols toggle                        | <leader>cs
 Previous Trouble/Quickfix Item                | [q        
 Next Trouble/Quickfix Item                    | ]q        
 
