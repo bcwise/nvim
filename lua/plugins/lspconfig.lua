@@ -150,19 +150,6 @@ return {
   },
 
   --*******************************************
-  -- Server: pyright
-  --*******************************************
-  -- pyright will be automatically installed with mason and loaded with lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        pyright = {},
-      },
-    },
-  },
-
-  --*******************************************
   -- Server: stylua
   --*******************************************
   {
