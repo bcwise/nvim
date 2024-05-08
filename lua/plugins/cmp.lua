@@ -1,12 +1,21 @@
 return {
 
+  -- Use <tab> for completion and snippets (supertab)
+  -- first: disable default <tab> and <s-tab> behavior in LuaSnip
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    keys = function()
+      return {}
+    end,
+  },
+
   -- override nvim-cmp and add cmp-emoji
   {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
-      "rafamadriz/friendly-snippets",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -16,6 +25,7 @@ return {
       "f3fora/cmp-spell",
       "petertriho/cmp-git",
       "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
       "onsails/lspkind.nvim",
     },
     -- Not all LSP servers add brackets when completing a function.
@@ -80,33 +90,6 @@ return {
             return kind
           end,
         },
-
-        -- formatting = {
-        --   -- fields = { "kind", "abbr", "menu" },
-        --   fields = { "kind", "menu", "abbr" },
-        --   format = lspkind.cmp_format({
-        --     with_text = false,
-        --     maxwidth = 50,
-        --     show_labelDetails = false,
-        --     mode = "symbol_text",
-        --     menu = {
-        --       buffer = "[Buffer]",
-        --       calc = "[Calc]",
-        --       cmdline = "[Cmd]",
-        --       friendly = "[Friend]",
-        --       latex_symbols = "[LaTeX]",
-        --       luasnip = "[LuaSnip]",
-        --       lsp = "[LSP]",
-        --       nvim_lsp = "[LSP]",
-        --       nvim_lua = "[Lua]",
-        --       path = "[PATH]",
-        --       snippy = "[Snippy]",
-        --       treesitter = "[Tree]",
-        --       ultisnips = "[US]",
-        --       vsnip = "[VSnip]",
-        --     },
-        --   }),
-        -- },
 
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -256,15 +239,6 @@ return {
         end,
       }
       table.insert(opts.sources, { name = "luasnip" })
-    end,
-  },
-
-  -- Use <tab> for completion and snippets (supertab)
-  -- first: disable default <tab> and <s-tab> behavior in LuaSnip
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
     end,
   },
 
