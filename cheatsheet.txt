@@ -92,6 +92,18 @@ Buffer Explorer	(only buffers)                | <leader>be
 Explorer NeoTree (Root Dir)	                  | <leader>fe	
 Explorer NeoTree (cwd)	                      | <leader>fE	
 Git Explorer                                  | <leader>ge	
+Git add all                                   |  A  
+Git add file                                  | ga
+Git unstage file                              | gu
+Git revert file                               | gr
+Git commit                                    | gc
+Git push                                      | gp
+Git commit and push                           | gg
+Jump to symbol                                |  o 
+Rename                                        |  r 
+Preview   (and related commands)              |  P 
+Split   (and related commands)                |  s 
+
 
 ## vim-notify
 Notify message in Telescope window            | <leader>n
@@ -100,7 +112,7 @@ Notify message in Telescope window            | <leader>n
 Location List (Trouble)                       | <leader>xL 
 Quickfix List (Trouble)                       | <leader>xQ
 Trouble diagnostics togggle (Trouble)         | <leader>xx
-Trouble symbols toggle                        | <leader>cs
+Trouble symbols toggle                        |``leader>xX
 Previous Trouble/Quickfix Item                | [q        
 Next Trouble/Quickfix Item                    | ]q        
 
