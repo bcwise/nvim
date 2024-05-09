@@ -77,6 +77,7 @@ return {
       -- add any global capabilities here
       capabilities = {},
       -- options for vim.lsp.buf.format
+      -- :qa
       -- `bufnr` and `filter` is handled by the LazyVim formatter,
       -- but can be also overridden when specified
       format = {
@@ -150,39 +151,60 @@ return {
   },
 
   --*******************************************
-  -- Server: stylua
+  -- Server: eslint
   --*******************************************
   {
     "neovim/nvim-lspconfig",
     opts = {
-      servers = {
-        -- At work, some things don't work because of limited network access.
-        -- So we will install some packages (shfmt, stylua, etc), and configure
-        -- them here (and tell Mason not to install them).   THIS IS ONLY FOR
-        -- WORK.
-        stylua = {
-          mason = false,
-          cmd = { "stylua" },
-          filetypes = { "lua" },
-          root_dir = function(fname)
-            return require("lspconfig.util").root_pattern(
-              ".luarc.json",
-              ".luarc.jsonc",
-              ".luacheckrc",
-              ".stylua.toml",
-              "stylua.toml",
-              "selene.toml",
-              "selene.yml",
-              ".git"
-            )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-              fname
-            ) or require("lspconfig.util").find_git_ancestor(fname)
-          end,
-          -- root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
-        },
+      servers = { eslint = {} },
+      setup = {
+        eslint = function()
+          require("lazyvim.util").lsp.on_attach(function(client)
+            if client.name == "eslint" then
+              client.server_capabilities.documentFormattingProvider = true
+            elseif client.name == "tsserver" then
+              client.server_capabilities.documentFormattingProvider = false
+            end
+          end)
+        end,
       },
     },
   },
+
+  --*******************************************
+  -- Server: stylua
+  --*******************************************
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       -- At work, some things don't work because of limited network access.
+  --       -- So we will install some packages (shfmt, stylua, etc), and configure
+  --       -- them here (and tell Mason not to install them).   THIS IS ONLY FOR
+  --       -- WORK.
+  --       stylua = {
+  --         mason = false,
+  --         cmd = { "stylua" },
+  --         filetypes = { "lua" },
+  --         root_dir = function(fname)
+  --           return require("lspconfig.util").root_pattern(
+  --             ".luarc.json",
+  --             ".luarc.jsonc",
+  --             ".luacheckrc",
+  --             ".stylua.toml",
+  --             "stylua.toml",
+  --             "selene.toml",
+  --             "selene.yml",
+  --             ".git"
+  --           )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+  --             fname
+  --           ) or require("lspconfig.util").find_git_ancestor(fname)
+  --         end,
+  --         -- root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
+  --       },
+  --     },
+  --   },
+  -- },
 
   ---@type lspconfig.options
   --*******************************************

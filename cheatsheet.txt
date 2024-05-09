@@ -108,14 +108,6 @@ Split   (and related commands)                |  s
 ## vim-notify
 Notify message in Telescope window            | <leader>n
 
-## Trouble
-Location List (Trouble)                       | <leader>xL 
-Quickfix List (Trouble)                       | <leader>xQ
-Trouble diagnostics togggle (Trouble)         | <leader>xx
-Trouble symbols toggle                        |``leader>xX
-Previous Trouble/Quickfix Item                | [q        
-Next Trouble/Quickfix Item                    | ]q        
-
 ## Telescope
 Find git files                                | <leader><space>
 Live grep                                     | <leader>?
@@ -152,11 +144,6 @@ Selection (Root Dir)(visual mode)             | <leader>sw
 Selection (cwd)     (visual mode)             | <leader>ss
 Colorscheme with Preview                      | <leader>uC
 
-## Typescript
-Typescript Organize Inports                   | <leader>co
-Typescript Rename File                        |  <leader>cR
-
-
 ## Todo-Comments
 Todo                                          | <leader>st
 Todo/Fix/Fixme                                | <leader>sT
@@ -164,6 +151,22 @@ Todo(Trouble)                                 | <leader>Xt
 Todo/Fix/Fixme(Trouble)                       | <leader>xT
 Nex Todo Comment                              | ]t
 Previous Todo Comment                         | [t
+
+## Treesitter-Context
+Toggle Treesitter Context                     | <leader>ut
+
+## Trouble
+Location List (Trouble)                       | <leader>xL 
+Quickfix List (Trouble)                       | <leader>xQ
+Trouble diagnostics togggle (Trouble)         | <leader>xx
+Trouble symbols toggle                        |``leader>xX
+Previous Trouble/Quickfix Item                | [q        
+Next Trouble/Quickfix Item                    | ]q        
+
+## Typescript
+Typescript Organize Inports                   | <leader>co
+Typescript Rename File                        |  <leader>cR
+
 
 ## Yanky
 Open Yank History                             | <leader>p	
