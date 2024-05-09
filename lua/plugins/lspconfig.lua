@@ -101,11 +101,11 @@ return {
           },
 
           cmd = {
-            -- "clangd",
-            -- "-j=10",
-            "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
-            "-j=4",
-            "-fallback-style=/software/clang/.clang-format",
+            "clangd",
+            "-j=10",
+            -- "/home/nemesis3/bwise/opt/llvm-16.0.3/root/bin/clangd",
+            -- "-j=4",
+            -- "-fallback-style=/software/clang/.clang-format",
             "--background-index",
             "--clang-tidy",
             "--completion-style=detailed",

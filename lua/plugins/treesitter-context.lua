@@ -6,7 +6,7 @@ return {
       max_lines = 0,
       -- min_window_height = 0,
       -- multiline_threshold = 3,
-      -- separator = "------------------------------- context -------------------------------",
+      separator = "-",
     },
   },
 }
