@@ -144,6 +144,15 @@ Selection (Root Dir)(visual mode)             | <leader>sw
 Selection (cwd)     (visual mode)             | <leader>ss
 Colorscheme with Preview                      | <leader>uC
 
+## Telescope-Adjacent (find files in the same dir)
+Telescope Adjacent                            | <leader>fa
+
+## Telescope-Undo
+Undo History                                  | <leader>su
+Yank Additions                                | <cr>
+Yank Deletions                                | <S-cr>
+Restore                                       | <C-u>
+
 ## Todo-Comments
 Todo                                          | <leader>st
 Todo/Fix/Fixme                                | <leader>sT

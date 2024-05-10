@@ -16,17 +16,17 @@ return {
         },
         on_attach = function(buffer)
           local gitsigns = package.loaded.gitsigns
-          local border =
-            {
-              { "🭽", "FloatBorder" },
-              { "▔", "FloatBorder" },
-              { "🭾", "FloatBorder" },
-              { "▕", "FloatBorder" },
-              { "🭿", "FloatBorder" },
-              { "▁", "FloatBorder" },
-              { "🭼", "FloatBorder" },
-              { "▏", "FloatBorder" },
-            }, gitsigns.signcolumn - true
+          local border = {
+            { "🭽", "FloatBorder" },
+            { "▔", "FloatBorder" },
+            { "🭾", "FloatBorder" },
+            { "▕", "FloatBorder" },
+            { "🭿", "FloatBorder" },
+            { "▁", "FloatBorder" },
+            { "🭼", "FloatBorder" },
+            { "▏", "FloatBorder" },
+          }
+          gitsigns.signcolumn = true
           gitsigns.numhl = false -- Toggle with `:Gitsigns toggle_numhl`
           gitsigns.linehl = false -- Toggle with `:Gitsigns toggle_linehl`
           gitsigns.word_diff = false -- Toggle with `:Gitsigns toggle_word_diff`
