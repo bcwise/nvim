@@ -1,0 +1,13 @@
+diff --git a/lua/plugins/neorg/init.lua b/lua/plugins/neorg/init.lua
+index e8d0e5f..cd7efc5 100644
+--- a/lua/plugins/neorg/init.lua
++++ b/lua/plugins/neorg/init.lua
+@@ -23,7 +23,7 @@ return {
+         ["core.itero"] = {},
+         ["core.esupports.indent"] = {},
+         ["core.summary"] = {},
+-        ["core.tempus"] = {},
++        -- ["core.tempus"] = {},
+         -- ["core.ui.calendar"] = {},
+         ["core.integrations.nvim-cmp"] = {},
+         ["core.integrations.treesitter"] = {},

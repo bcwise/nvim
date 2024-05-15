@@ -1,0 +1,40 @@
+diff --git a/cheatsheet.txt b/cheatsheet.txt
+index 1447e15..ef10efb 100644
+--- a/cheatsheet.txt
++++ b/cheatsheet.txt
+@@ -104,8 +104,11 @@ Refresh & Display Codelens                                              | <leade
+ Source Action                                                           | <leader>cA	
+ Rename                                                                  | <leader>cr	
+ 
+-## TODO: Add keystrokes for neord.
+-TODO: Neord                                                             | TODO
++## LSP-TOGGLE
++Toggle LSP                                                              | lt
++Toggle Null-ls                                                          | ln
++
++##TODO: Neord                                                             | TODO
+ 
+ ## neo-tree(NAV)
+ Previous source                                                         | <
+@@ -174,6 +177,7 @@ Sort the tree recursively based on fzy algorithm                        | #
+ Same as above, but does not search until you hit enter                  | f
+ Removes the filter                                                      | <C-x>
+ 
++
+ ## vim-notify
+ Notify message in Telescope window                                      | <leader>n
+ 
+@@ -222,6 +226,13 @@ Yank Additions                                                          | <cr>
+ Yank Deletions                                                          | <S-cr>
+ Restore                                                                 | <C-u>
+ 
++## UFO
++Open all folds                                                          | zR 
++Close all folds                                                         | zM
++Open folds                                                              | zr
++Close folds                                                             | zm
++Peek at folded lines under the cursor                                   | zk
++
+ ## Todo-Comments
+ Todo                                                                    | <leader>st
+ Todo/Fix/Fixme                                                          | <leader>sT

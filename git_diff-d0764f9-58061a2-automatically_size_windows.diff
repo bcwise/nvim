@@ -1,0 +1,25 @@
+diff --git a/lua/plugins/windows.lua b/lua/plugins/windows.lua
+new file mode 100644
+index 0000000..e4d53d2
+--- /dev/null
++++ b/lua/plugins/windows.lua
+@@ -0,0 +1,19 @@
++return {
++  {
++    "anuvyklack/windows.nvim",
++    commit = "4dcfd82374726097a05bc1fe3b3b6e934be184eb",
++    event = "WinNew",
++    cmd = { "WindowsEqualize", "WindowsMaximize" },
++    dependencies = {
++      { "anuvyklack/middleclass" },
++    },
++    config = function()
++      require("windows").setup({
++        ignore = {
++          buftype = { "quickfix" },
++          filetype = { "Outline", "NvimTree", "neo-tree", "undotree", "gundo" },
++        },
++      })
++    end,
++  },
++}

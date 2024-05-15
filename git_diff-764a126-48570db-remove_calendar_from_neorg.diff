@@ -1,0 +1,13 @@
+diff --git a/lua/plugins/neorg/init.lua b/lua/plugins/neorg/init.lua
+index bc55423..e8d0e5f 100644
+--- a/lua/plugins/neorg/init.lua
++++ b/lua/plugins/neorg/init.lua
+@@ -24,7 +24,7 @@ return {
+         ["core.esupports.indent"] = {},
+         ["core.summary"] = {},
+         ["core.tempus"] = {},
+-        ["core.ui.calendar"] = {},
++        -- ["core.ui.calendar"] = {},
+         ["core.integrations.nvim-cmp"] = {},
+         ["core.integrations.treesitter"] = {},
+         ["core.completion"] = { config = { engine = "nvim-cmp" } },

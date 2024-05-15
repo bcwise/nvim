@@ -1,0 +1,61 @@
+diff --git a/lua/plugins/telescope/undo.lua b/lua/plugins/telescope/undo.lua
+index 5801737..6ed5b7d 100644
+--- a/lua/plugins/telescope/undo.lua
++++ b/lua/plugins/telescope/undo.lua
+@@ -1,27 +1,31 @@
+ return {
+-	"debugloop/telescope-undo.nvim",
+-  commit="03ff45fab0c4adad4d252e25b5b194e22caf5b4f",
+-	dependencies = "telescope.nvim",
+-	keys = { { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo History" } },
+-	config = function()
+-		require("telescope").setup({
+-			extensions = {
+-				undo = {
+-					mappings = {
+-						i = {
+-							["<cr>"] = require("telescope-undo.actions").yank_additions,
+-							["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+-							["<C-u>"] = require("telescope-undo.actions").restore,
+-						},
+-						n = {
+-							["<cr>"] = require("telescope-undo.actions").yank_additions,
+-							["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+-							["<C-u>"] = require("telescope-undo.actions").restore,
+-						},
+-					},
+-				},
+-			},
+-		})
+-		require("telescope").load_extension("undo")
+-	end,
++  "debugloop/telescope-undo.nvim",
++  -- commit = "03ff45fab0c4adad4d252e25b5b194e22caf5b4f",
++  dependencies = {
++      "telescope.nvim",
++      "nvim-lua/plenary.nvm",
++  }
++  keys = { { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo History" } },
++  config = function()
++    require("telescope").setup({
++      extensions = {
++        undo = {
++          mappings = {
++            i = {
++              ["<cr>"] = require("telescope-undo.actions").yank_additions,
++              ["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
++              ["<C-u>"] = require("telescope-undo.actions").restore,
++            },
++            n = {
++              ["<cr>"] = require("telescope-undo.actions").yank_additions,
++              ["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
++              ["<C-u>"] = require("telescope-undo.actions").restore,
++            },
++          },
++        },
++      },
++    })
++    require("telescope").setup(opts)
++    require("telescope").load_extension("undo")
++  end,
+ }

@@ -1,0 +1,450 @@
+diff --git a/cheatsheet.txt b/cheatsheet.txt
+index fa6a1aa..1447e15 100644
+--- a/cheatsheet.txt
++++ b/cheatsheet.txt
+@@ -1,206 +1,269 @@
+-# TODO: Add keystrokes for harpoon.
+-# TODO: Add keystrokes for diffview.
+-# TODO: Add keystrokes for dadbod.
+-# TODO: Add keystrokes for auto-save.
+-# TODO: Add keystrokes for neord.
++
++## auto-save(TODO)
+ 
+ ## cheatsheet @quick @reference
+-Toggle Cheatsheet open/close in telescope.    | ,ch
+-Open (in telescope if installed)              | :Cheatsheet
+-Force open in floating window                 | :Cheatsheet!
+-Open user cheatsheet                          | :CheatsheetEdit
+-Open user cheatsheet from Telescope           | <C-E>
+-Toggle default cheatsheet Telescope           | <C-D>
++Toggle Cheatsheet open/close in telescope.                              | ,ch
++Open (in telescope if installed)                                        | :Cheatsheet
++Force open in floating window                                           | :Cheatsheet!
++Open user cheatsheet                                                    | :CheatsheetEdit
++Open user cheatsheet from Telescope                                     | <C-E>
++Toggle default cheatsheet Telescope                                     | <C-D>
++
++## dadbod(TODO)
++TODO: dadbod                                                            | TODO
++
++## diffview(TODO)
++TODO: diffview                                                          | TODO
+ 
+ ## General
+-Prev Buffer                                   | [b
+-Next Buffer                                   | ]b
+-:Lazy                                         |  L
+-Previous Quickfix                             | [q
+-Next Quickfix                                 | ]q
+-Format                                        | <leader>cf
+-Line Diagnostics                              | <leader>cd
+-Previous Diagnostic                           | [d
+-Next Diagnostic                               | ]d
+-Previous Error                                | [e
+-Next Error                                    | ]e
+-Previous Warning                              | [w
+-Next Warning                                  | ]w
+-Toggle Auto Format (Global)                   | <leader>uf
+-Toggle Auto Format (Buffer)                   | <leader>uF
+-Toggle Spelling                               | <leader>us
+-Toggle Word Wrap                              | <leader>uw
+-Toggle Relative Line Numbers                  | <leader>uL
+-Toggle Diagnostics                            | <leader>ud
+-Toggle Conceal                                | <leader>uc
+-Toggle Inlay Hints                            | <leader>uh
+-Toggle Treesitter Highlight                   | <leader>uT
+-Toggle Background                             | <leader>ub
+-Lazygit (Root Dir)                            | <leader>gg
+-Lazygit (cwd)                                 | <leader>gG
+-Git Blame Line                                | <leader>gb
+-Quit All                                      | <leader>qq
+-Inspect Pos                                   | <leader>ui
+-LazyVim Changelog                             | <leader>L
+-Terminal (Root Dir)                           | <leader>ft
+-Terminal (cwd)                                | <leader>fT
+-Terminal (Root Dir)                           | <c-/>
+-which_key_ignore                              | <c-_>               
+-Enter Normal Mode                             | <esc><esc>          
+-Hide Terminal                                 | <C-/>               
+-Other Window                                  | <leader>ww          
+-Delete Window                                 | <leader>wd          
+-Split Window Below                            | <leader>w-          
+-Split Window Right                            | <leader>w|          
+-Split Window Below                            | <leader>-           
+-Split Window Right                            | <leader>|           
+-Last Tab                                      | <leader><tab>l      
+-First Tab                                     | <leader><tab>f      
+-New Tab                                       | <leader><tab><tab>	
+-Next Tab                                      | <leader><tab>]      
+-Close Tab                                     | <leader><tab>d      
+-Previous Tab                                  | <leader><tab>[      
++Prev Buffer                                                             | [b
++Next Buffer                                                             | ]b
++Lazy                                                                    |  L
++Previous Quickfix                                                       | [q
++Next Quickfix                                                           | ]q
++Format                                                                  | <leader>cf
++Line Diagnostics                                                        | <leader>cd
++Previous Diagnostic                                                     | [d
++Next Diagnostic                                                         | ]d
++Previous Error                                                          | [e
++Next Error                                                              | ]e
++Previous Warning                                                        | [w
++Next Warning                                                            | ]w
++Toggle Auto Format (Global)                                             | <leader>uf
++Toggle Auto Format (Buffer)                                             | <leader>uF
++Toggle Spelling                                                         | <leader>us
++Toggle Word Wrap                                                        | <leader>uw
++Toggle Relative Line Numbers                                            | <leader>uL
++Toggle Diagnostics                                                      | <leader>ud
++Toggle Conceal                                                          | <leader>uc
++Toggle Inlay Hints                                                      | <leader>uh
++Toggle Treesitter Highlight                                             | <leader>uT
++Toggle Background                                                       | <leader>ub
++Lazygit (Root Dir)                                                      | <leader>gg
++Lazygit (cwd)                                                           | <leader>gG
++Git Blame Line                                                          | <leader>gb
++Quit All                                                                | <leader>qq
++Inspect Pos                                                             | <leader>ui
++LazyVim Changelog                                                       | <leader>L
++Terminal (Root Dir)                                                     | <leader>ft
++Terminal (cwd)                                                          | <leader>fT
++Terminal (Root Dir)                                                     | <c-/>
++which_key_ignore                                                        | <c-_>               
++Enter Normal Mode                                                       | <esc><esc>          
++Hide Terminal                                                           | <C-/>               
++Other Window                                                            | <leader>ww          
++Delete Window                                                           | <leader>wd          
++Split Window Below                                                      | <leader>w-          
++Split Window Right                                                      | <leader>w|          
++Split Window Below                                                      | <leader>-           
++Split Window Right                                                      | <leader>|           
++Last Tab                                                                | <leader><tab>l      
++First Tab                                                               | <leader><tab>f      
++New Tab                                                                 | <leader><tab><tab>	
++Next Tab                                                                | <leader><tab>]      
++Close Tab                                                               | <leader><tab>d      
++Previous Tab                                                            | <leader><tab>[      
+ 
+ ## GitSigns
+-Hunk stage                                    | <leader>hs
+-Hunk undo stage                               | <leader>hu
+-Hunk reset                                    | <leader>hr
+-Hunk preview                                  | <leader>hp
+-Hunk blame line                               | <leader>hb
+-Hunk blame toggle                             | <leader>tb
+-Hunk diff                                     | <leader>hd
+-Hunk diff                                     | <leader>hD
+-Hunk toggle deleted                           | <leader>td
+-Stage Buffer                                  | <leader>hS
+-Reset Buffer                                  | <leader>hR
+-Select (Highlight) hunk                       | <leader>hh
++Hunk stage                                                              | <leader>hs
++Hunk undo stage                                                         | <leader>hu
++Hunk reset                                                              | <leader>hr
++Hunk preview                                                            | <leader>hp
++Hunk blame line                                                         | <leader>hb
++Hunk blame toggle                                                       | <leader>tb
++Hunk diff                                                               | <leader>hd
++Hunk diff                                                               | <leader>hD
++Hunk toggle deleted                                                     | <leader>td
++Stage Buffer                                                            | <leader>hS
++Reset Buffer                                                            | <leader>hR
++Select (Highlight) hunk                                                 | <leader>hh
++
++## Harpoon (work with a small set of files)
++Add to list                                                             | mf
++Toggle Quick-Menu                                                       | ms
++Nav->File 1                                                             | m1
++Nav->File 2                                                             | m2
++Nav->File 3                                                             | m3
++Nav->File 4                                                             | m4
++Nav->Next file                                                          | ]v
++Nav->Prev file                                                          | [v
+ 
+ ## LSP
+-Lsp Info	                                    | <leader>cl	
+-Goto Definition	                              | gd          
+-Goto Declaration	                            | gD          
+-References	                                  | gr          
+-Goto Implementation	                          | gI          
+-Goto T[y]pe Definition	                      | gy          
+-Hover	                                        | K           
+-Signature Help	                              | gK          
+-Signature Help	                              | <c-k>       
+-Code Action	                                  | <leader>ca	
+-Run Codelens	                                | <leader>cc	
+-Refresh & Display Codelens                    | <leader>cC	
+-Source Action	                                | <leader>cA	
+-Rename	                                      | <leader>cr	
+-
+-## neo-tree
+-Explorer NeoTree (Root Dir)                   | <leader>e	  
+-Explorer NeoTree (cwd)	                      | <leader>E	  
+-Buffer Explorer	(only buffers)                | <leader>be	
+-Explorer NeoTree (Root Dir)	                  | <leader>fe	
+-Explorer NeoTree (cwd)	                      | <leader>fE	
+-Git Explorer                                  | <leader>ge	
+-Git add all                                   |  A  
+-Git add file                                  | ga
+-Git unstage file                              | gu
+-Git revert file                               | gr
+-Git commit                                    | gc
+-Git push                                      | gp
+-Git commit and push                           | gg
+-Jump to symbol                                |  o 
+-Rename                                        |  r 
+-Preview   (and related commands)              |  P 
+-Split   (and related commands)                |  s 
++Lsp Info                                                                | <leader>cl	
++Goto Definition                                                         | gd          
++Goto Declaration                                                        | gD          
++References                                                              | gr          
++Goto Implementation                                                     | gI          
++Goto T[y]pe Definition                                                  | gy          
++Hover                                                                   | K           
++Signature Help                                                          | gK          
++Signature Help                                                          | <c-k>       
++Code Action                                                             | <leader>ca	
++Run Codelens                                                            | <leader>cc	
++Refresh & Display Codelens                                              | <leader>cC	
++Source Action                                                           | <leader>cA	
++Rename                                                                  | <leader>cr	
++
++## TODO: Add keystrokes for neord.
++TODO: Neord                                                             | TODO
++
++## neo-tree(NAV)
++Previous source                                                         | <
++Next source                                                             | >
++Moves the root directory up one level                                   | bs
++Sets the root directory to the current folder                           | bs
++Toggle dir/nested file open/close                                       | <space>
++Same as above                                                           | <2-LeftMouse>
++Open or close a folder                                                  | <cr>
++[C]lose node                                                            | C
++close all nodes                                                         | z
++Toggle preview                                                          | P
++Focus the actiive preview window                                        | l
++Reverts any preview window                                              | <esc>
++Open, but in a new horizontal split                                     | S
++Open, but in a new virtical split                                       | s
++Open, tabnew: Same as open, but opens in a new tab.                     | t
++Open, with the window-picker                                            | w
++Jump to the previous file reported by `git status`                      | [g
++Jump to the next file reported by `git status`.                         | ]g
++
++## neo-tree(FILE ACTIONS)
++Explorer NeoTree (Root Dir)                                             | <leader>e	  
++Explorer NeoTree (cwd)                                                  | <leader>E	  
++Buffer Explorer	(only buffers)                                          | <leader>be	
++File explorer (Root Dir)                                                | <leader>fe	
++File explorer (cwd)                                                     | <leader>fE	
++Git Explorer                                                            | <leader>ge	
++Add: a new file                                                         | a
++Add: a new directory                                                    | A
++Copy: selected file or directory                                        | r
++Delete: the selected file or directory                                  | d
++Information: about a file                                               | i
++Move: the selected file or directory                                    | m
++Rename: the selected file or directory                                  | r 
++XCut: mark file to be cut (moved)                                       | x
++Yank: mark file to be copied                                            | y
++Git add all                                                             |  A  
++Git add file                                                            | ga
++Git unstage file                                                        | gu
++Git revert file                                                         | gr
++Git commit                                                              | gc
++Git push                                                                | gp
++Git commit and push                                                     | gg
++Jump to symbol                                                          |  o 
++Rename                                                                  |  r 
++Preview   (and related commands)                                        |  P 
++Split   (and related commands)                                          |  s 
++
++## neo-tree(VIEW CHANGES)
++Toggle whether hidden (filtered items) are shown or not.                | H
++Rescan the filesystem and redraw the tree. Changes made                 | R
++Order_by...see below for more choices                                   | o
++Order the tree by created date.                                         | oc
++Order the tree by diagnostic severity.                                  | od
++Order the tree by git status.                                           | og
++Order the tree by last modified date.                                   | om
++Order the tree by name (default sort)                                   | on
++Order the tree  by size.                                                | os
++Order the tree by type.                                                 | ot
+ 
++## neo-tree(FILTER)
++Filter the tree recursively                                             | /
++Like directory finder                                                   | D
++Sort the tree recursively based on fzy algorithm                        | #
++Same as above, but does not search until you hit enter                  | f
++Removes the filter                                                      | <C-x>
+ 
+ ## vim-notify
+-Notify message in Telescope window            | <leader>n
++Notify message in Telescope window                                      | <leader>n
+ 
+ ## Telescope
+-Find git files                                | <leader><space>
+-Live grep                                     | <leader>?
+-Find Buffers                                  | <leader>fb
+-Find config file(s)                           | <leader>fc
+-Find Files (git, root dir)                    | <leader>ff
+-Find Files (git, cwd)                         | <leader>fF
+-Find Files (git)                              | <leader>fg
+-Find Recent (files)                           | <leader>fr
+-Find Recent (cwd)                             | <leader>fR
+-Find Commits                                  | <leader>gc
+-Find Status                                   | <leader>gs
+-Find Registers                                | <leader>s"
+-Auto Commands                                 | <leader>sa
+-Buffers (current, fuzzy)                      | <leader>sb
+-Command History                               | <leader>sc
+-Commands                                      | <leader>sC
+-Document Diagnostics                          | <leader>sd
+-Workspace Diagnostics                         | <leader>sD
+-Grep (Root Dir)                               | <leader>sg
+-Grep (cwd)                                    | <leader>sG
+-Help Pages                                    | <leader>sh
+-Search Highlight Groups                       | <leader>sH
+-Key Maps                                      | <leader>sk
+-Jump to Mark                                  | <leader>sm
+-Man Pages                                     | <leader>sM
+-Options                                       | <leader>so
+-Resume                                        | <leader>sR
+-Goto Symbol                                   | <leader>ss
+-Goto Symbol (Workspace)                       | <leader>sS
+-Word (Root Dir)                               | <leader>sw
+-Word (cwd)                                    | <leader>sW
+-Selection (Root Dir)(visual mode)             | <leader>sw
+-Selection (cwd)     (visual mode)             | <leader>ss
+-Colorscheme with Preview                      | <leader>uC
++Find git files                                                          | <leader><space>
++Live grep                                                               | <leader>?
++Find Buffers                                                            | <leader>fb
++Find config file(s)                                                     | <leader>fc
++Find Files (git, root dir)                                              | <leader>ff
++Find Files (git, cwd)                                                   | <leader>fF
++Find Files (git)                                                        | <leader>fg
++Find Recent (files)                                                     | <leader>fr
++Find Recent (cwd)                                                       | <leader>fR
++Find Commits                                                            | <leader>gc
++Find Status                                                             | <leader>gs
++Find Registers                                                          | <leader>s"
++Auto Commands                                                           | <leader>sa
++Buffers (current, fuzzy)                                                | <leader>sb
++Command History                                                         | <leader>sc
++Commands                                                                | <leader>sC
++Document Diagnostics                                                    | <leader>sd
++Workspace Diagnostics                                                   | <leader>sD
++Grep (Root Dir)                                                         | <leader>sg
++Grep (cwd)                                                              | <leader>sG
++Help Pages                                                              | <leader>sh
++Search Highlight Groups                                                 | <leader>sH
++Key Maps                                                                | <leader>sk
++Jump to Mark                                                            | <leader>sm
++Man Pages                                                               | <leader>sM
++Options                                                                 | <leader>so
++Resume                                                                  | <leader>sR
++Goto Symbol                                                             | <leader>ss
++Goto Symbol (Workspace)                                                 | <leader>sS
++Word (Root Dir)                                                         | <leader>sw
++Word (cwd)                                                              | <leader>sW
++Selection (Root Dir)(visual mode)                                       | <leader>sw
++Selection (cwd)     (visual mode)                                       | <leader>ss
++Colorscheme with Preview                                                | <leader>uC
+ 
+ ## Telescope-Adjacent (find files in the same dir)
+-Telescope Adjacent                            | <leader>fa
++Telescope Adjacent                                                      | <leader>fa
+ 
+ ## Telescope-Undo
+-Undo History                                  | <leader>su
+-Yank Additions                                | <cr>
+-Yank Deletions                                | <S-cr>
+-Restore                                       | <C-u>
++Undo History                                                            | <leader>su
++Yank Additions                                                          | <cr>
++Yank Deletions                                                          | <S-cr>
++Restore                                                                 | <C-u>
+ 
+ ## Todo-Comments
+-Todo                                          | <leader>st
+-Todo/Fix/Fixme                                | <leader>sT
+-Todo(Trouble)                                 | <leader>Xt
+-Todo/Fix/Fixme(Trouble)                       | <leader>xT
+-Nex Todo Comment                              | ]t
+-Previous Todo Comment                         | [t
++Todo                                                                    | <leader>st
++Todo/Fix/Fixme                                                          | <leader>sT
++Todo(Trouble)                                                           | <leader>Xt
++Todo/Fix/Fixme(Trouble)                                                 | <leader>xT
++Nex Todo Comment                                                        | ]t
++Previous Todo Comment                                                   | [t
+ 
+ ## Treesitter-Context
+-Toggle Treesitter Context                     | <leader>ut
++Toggle Treesitter Context                                               | <leader>ut
+ 
+ ## Trouble
+-Location List (Trouble)                       | <leader>xL 
+-Quickfix List (Trouble)                       | <leader>xQ
+-Trouble diagnostics togggle (Trouble)         | <leader>xx
+-Trouble symbols toggle                        |``leader>xX
+-Previous Trouble/Quickfix Item                | [q        
+-Next Trouble/Quickfix Item                    | ]q        
++Location List (Trouble)                                                 | <leader>xL 
++Quickfix List (Trouble)                                                 | <leader>xQ
++Trouble diagnostics togggle (Trouble)                                   | <leader>xx
++Trouble symbols toggle                                                  | <leader>xX
++Previous Trouble/Quickfix Item                                          | [q        
++Next Trouble/Quickfix Item                                              | ]q        
+ 
+ ## Typescript
+-Typescript Organize Inports                   | <leader>co
+-Typescript Rename File                        |  <leader>cR
++Typescript Organize Inports                                             | <leader>co
++Typescript Rename File                                                  | <leader>cR
+ 
+ 
+ ## Yanky
+-Open Yank History                             | <leader>p	
+-Yank Text                                     | y	  
+-Put Yanked Text After Cursor                  | p	  
+-Put Yanked Text Before Cursor                 | P	  
+-Put Yanked Text After Selection               | gp	
+-Put Yanked Text Before Selection              | gP	
+-Cycle Forward Through Yank History            | [y	
+-Cycle Backward Through Yank History           | ]y	
+-Put Indented After Cursor (Linewise)          | ]p	
+-Put Indented After Cursor (Linewise)          | ]P	
+-Put and Indent Right                          | >p	
+-Put and Indent Left                           | <p	
+-Put Before and Indent Right                   | >P	
+-Put Before and Indent Left                    | <P	
+-Put After Applying a Filter                   | =p	
+-Put Before Applying a Filter                  | =P	
+-Cycle Forward Through Yank History            | <c-n>
+-Cycle Backward Through Yank History           | <c-p>
++Open Yank History                                                       | <leader>p	
++Yank Text                                                               | y	  
++Put Yanked Text After Cursor                                            | p	  
++Put Yanked Text Before Cursor                                           | P	  
++Put Yanked Text After Selection                                         | gp	
++Put Yanked Text Before Selection                                        | gP	
++Cycle Forward Through Yank History                                      | [y	
++Cycle Backward Through Yank History                                     | ]y	
++Put Indented After Cursor (Linewise)                                    | ]p	
++Put Indented After Cursor (Linewise)                                    | ]P	
++Put and Indent Right                                                    | >p	
++Put and Indent Left                                                     | <p	
++Put Before and Indent Right                                             | >P	
++Put Before and Indent Left                                              | <P	
++Put After Applying a Filter                                             | =p	
++Put Before Applying a Filter                                            | =P	
++Cycle Forward Through Yank History                                      | <c-n>
++Cycle Backward Through Yank History                                     | <c-p>
+ 
+ 
