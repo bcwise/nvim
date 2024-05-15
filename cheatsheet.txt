@@ -8,77 +8,77 @@ Open user cheatsheet                                                    | :Cheat
 Open user cheatsheet from Telescope                                     | <C-E>
 Toggle default cheatsheet Telescope                                     | <C-D>
 
+## Vim-dadbod(Simple navigation through DB. These are the default mappings for the dbui drawer)
+Open/Toggle Drawer options                                              | o / <CR>
+Open in vertical split                                                  | S
+Delete buffer or saved sql                                              | d
+Redraw                                                                  | R
+Add connection                                                          | A
+Toggle database details                                                 | H
+Permanently save query for later use                                    | <Leader>W
+Edit bind parameters                                                    | <Leader>E
 
 ## DiffView
-vim.api.nvim_set_keymap("n", "<leader>dvt",   ":DiffviewToggleFiles",        { silent = false, noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>dvo",   ":DiffviewOpen",               { silent = false, noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>dvc",   ":DiffviewClose",              { silent = false, noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>dvo2",  ":DiffviewOpen HEAD~2",        { silent = false, noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>dvo42", ":DiffviewOpen HEAD~4..HEAD2", { silent = false, noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>dvo42", ":DiffviewOpen HEAD~4..HEAD2", { silent = false, noremap = true })
+Toggle files                                                            | <leader>dvt
+Open                                                                    | <leader>dvo
+Close                                                                   | <leader>dvc
+Open HEAD~2                                                             | <leader>dvo2
+Open HEAD~4..HEAD2                                                      | <leader>dvo42
+Open HEAD~4..HEAD2                                                      | <leader>dvo42
 
 
+## DiffView(view)
+Open the diff for the next file                                         | <tab>
+Open the diff for the previous file                                     | <s-tab>
+Open the file in a new split in previous tabpage                        | gf
+Open the file in a new split                                            | <C-w><C-f>
+Open the file in a new tabpage                                          | <C-w>gf
+Bring focus to the files panel                                          | <leader>e
+Toggle the files panel.                                                 | <leader>b
+Toggle between 'list' and 'tree' views                                  | i
+Flatten empty subdirectories in tree listing style                      | f
 
- view = {
-      ["<tab>"]      = cb("select_next_entry"),  -- Open the diff for the next file
-      ["<s-tab>"]    = cb("select_prev_entry"),  -- Open the diff for the previous file
-      ["gf"]         = cb("goto_file"),          -- Open the file in a new split in previous tabpage
-      ["<C-w><C-f>"] = cb("goto_file_split"),    -- Open the file in a new split
-      ["<C-w>gf"]    = cb("goto_file_tab"),      -- Open the file in a new tabpage
-      ["<leader>e"]  = cb("focus_files"),        -- Bring focus to the files panel
-      ["<leader>b"]  = cb("toggle_files"),       -- Toggle the files panel.
-    },
-    file_panel = {
-      ["j"]             = cb("next_entry"),           -- Bring the cursor to the next file entry
-      ["<down>"]        = cb("next_entry"),
-      ["k"]             = cb("prev_entry"),           -- Bring the cursor to the previous file entry.
-      ["<up>"]          = cb("prev_entry"),
-      ["<cr>"]          = cb("select_entry"),         -- Open the diff for the selected entry.
-      ["o"]             = cb("select_entry"),
-      ["<2-LeftMouse>"] = cb("select_entry"),
-      ["-"]             = cb("toggle_stage_entry"),   -- Stage / unstage the selected entry.
-      ["S"]             = cb("stage_all"),            -- Stage all entries.
-      ["U"]             = cb("unstage_all"),          -- Unstage all entries.
-      ["X"]             = cb("restore_entry"),        -- Restore entry to the state on the left side.
-      ["R"]             = cb("refresh_files"),        -- Update stats and entries in the file list.
-      ["<tab>"]         = cb("select_next_entry"),
-      ["<s-tab>"]       = cb("select_prev_entry"),
-      ["gf"]            = cb("goto_file"),
-      ["<C-w><C-f>"]    = cb("goto_file_split"),
-      ["<C-w>gf"]       = cb("goto_file_tab"),
-      ["i"]             = cb("listing_style"),        -- Toggle between 'list' and 'tree' views
-      ["f"]             = cb("toggle_flatten_dirs"),  -- Flatten empty subdirectories in tree listing style.
-      ["<leader>e"]     = cb("focus_files"),
-      ["<leader>b"]     = cb("toggle_files"),
-    },
-    file_history_panel = {
-      ["g!"]            = cb("options"),            -- Open the option panel
-      ["<C-A-d>"]       = cb("open_in_diffview"),   -- Open the entry under the cursor in a diffview
-      ["y"]             = cb("copy_hash"),          -- Copy the commit hash of the entry under the cursor
-      ["zR"]            = cb("open_all_folds"),
-      ["zM"]            = cb("close_all_folds"),
-      ["j"]             = cb("next_entry"),
-      ["<down>"]        = cb("next_entry"),
-      ["k"]             = cb("prev_entry"),
-      ["<up>"]          = cb("prev_entry"),
-      ["<cr>"]          = cb("select_entry"),
-      ["o"]             = cb("select_entry"),
-      ["<2-LeftMouse>"] = cb("select_entry"),
-      ["<tab>"]         = cb("select_next_entry"),
-      ["<s-tab>"]       = cb("select_prev_entry"),
-      ["gf"]            = cb("goto_file"),
-      ["<C-w><C-f>"]    = cb("goto_file_split"),
-      ["<C-w>gf"]       = cb("goto_file_tab"),
-      ["<leader>e"]     = cb("focus_files"),
-      ["<leader>b"]     = cb("toggle_files"),
-    },
-    option_panel = {
-      ["<tab>"] = cb("select"),
-      ["q"]     = cb("close"),
+## DiffView(file panel)
+Bring the cursor to the next file entry                                 | j
+Ditto                                                                   | <down>
+Bring the cursor to the previous file entry.                            | k
+Ditto                                                                   | <up>
+Open the diff for the selected entry.                                   | <cr>
+Ditto                                                                   | o
+Ditto                                                                   | <2-LeftMouse>
+Stage / unstage the selected entry.                                     | -
+Stage all entries.                                                      | S
+Unstage all entries.                                                    | U
+Restore entry to the state on the left side.                            | X
+Update stats and entries in the file list.                              | R
+
+## DiffView(file history panel)
+Open the option panel                                                   | g!
+Open the entry under the cursor in a diffview                           | <C-A-d>
+Copy the commit hash of the entry under the cursor                      | y
+Open all folds                                                          | zR
+Close all folds                                                         | zM
+Next entry                                                              | j
+Next entry                                                              | <down>
+Prev entry                                                              | k
+Prev entry                                                              | <up>
+Select entry                                                            | <cr>
+Select entry                                                            | o
+Select entry                                                            | <2-LeftMouse>
+Select next entry                                                       | <tab>
+Select prev entry                                                       | <s-tab>
+Goto file                                                               | gf
+Goto file split                                                         | <C-w><C-f>
+Goto file tab                                                           | <C-w>gf
+Focus files
+Toggle files                                                            |  <leader>b"]     
+
+## DiffView(Option panel)
+Select                                                                  | <tab>
+Close                                                                   | q
 
 ## GitBlame
-Git Blame Toggle | <leader>gbt
-
+Git Blame Toggle                                                        | <leader>gbt
 
 ## Navigtor
 treesitter document symbol                                              | gT	         
