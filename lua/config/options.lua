@@ -22,10 +22,13 @@ window_opt.signcolumn = "yes:2"
 
 vim.o.termguicolors = true --Set colorscheme (order is important here)
 
----------------------------------------------------
--- Abbreviations (typo corrections)
----------------------------------------------------
-cmd("cnoreabbrev WQ wq")
+-- Make sure lazygit gets loaded
+global.lazygit =
+  true,
+  ---------------------------------------------------
+  -- Abbreviations (typo corrections)
+  ---------------------------------------------------
+  cmd("cnoreabbrev WQ wq")
 cmd("cnoreabbrev Wq wq")
 cmd("cnoreabbrev We w")
 cmd("cnoreabbrev W  w")
