@@ -234,6 +234,15 @@ Search files inside your project                                        | <C-s>
 Rename currently selected project                                       | <C-v>
 Change to your project's directory                                      | <c-w>
 
+## UFO
+Open all folds                                                          | zR 
+Close all folds                                                         | zM
+Open folds                                                              | zr
+Close folds                                                             | zm
+Peek folded lines under cursor                                          | zk
+Scroll up                                                               | <C-u>
+Scroll down                                                             | <C-d>
+
 
 
 
