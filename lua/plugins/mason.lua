@@ -34,7 +34,6 @@ return {
           "lua-language-server",
           "marksman",
           "prettier",
-          "python-lsp-server",
           "ruby-lsp",
           "rust-analyzer",
           "shellcheck",
