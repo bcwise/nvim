@@ -80,6 +80,10 @@ Close                                                                   | q
 ## GitBlame
 Git Blame Toggle                                                        | <leader>gbt
 
+## LSP-TOGGLE
+Toggle LSP                                                              | " lt"
+Toggle Null-ls Lsp                                                      | " ln"
+
 ## Navigtor
 treesitter document symbol                                              | gT	         
 treesitter symbol for all open buffers                                  | <Leader>gT	 
@@ -201,9 +205,9 @@ Format                                                                  | <leade
 View clipboard contents through telescope                               | <leader>tc
 
 ## Symbol-Outline
-Symbols Outline           | <leader>so
-Symbols Outline Open      | <leader>soo
-Symbols Outline Close     | <leader>soc
+Symbols Outline                                                         | <leader>so
+Symbols Outline Open                                                    | <leader>soo
+Symbols Outline Close                                                   | <leader>soc
 
 
 ## Telescope @fuzzy
@@ -233,6 +237,12 @@ Find a recently opened file                                             | <c-r>
 Search files inside your project                                        | <C-s>
 Rename currently selected project                                       | <C-v>
 Change to your project's directory                                      | <c-w>
+
+## Telescope@undo
+Show undo's via Telescope                                               | <leader>su
+Yank additions                                                          | <cr>
+Yank deletions                                                          | <S-cr>
+Restore                                                                 | <C-u>
 
 ## UFO
 Open all folds                                                          | zR 
