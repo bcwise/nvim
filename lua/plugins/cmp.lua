@@ -153,11 +153,12 @@ return {
           -- max_item_count = 1
           -- keyword_length = 2
           -- { name = "copilot", max_item_count = 3 },
-          { name = "nvim_lsp", max_item_count = 5 },
+          { name = "nvim_lsp", priority = 10, max_item_count = 50 },
           -- { name = "npm", priority = 9 },
           -- { name = "git" },
           { name = "luasnip", max_item_count = 5 },
           { name = "friendly-snippets", max_item_count = 5 },
+          { name = "neorg" },
           -- { name = "spell", priority = 5 },
           -- {
           --   name = "spell",
@@ -172,7 +173,7 @@ return {
           { name = "path" },
           { name = "calc" },
           { name = "emoji" },
-          { name = "rg", keyword_length = 1 },
+          { name = "rg", keyword_length = 2 },
           { name = "buffer", keyword_length = 2, max_item_count = 5, option = buffer_option },
         }),
 
