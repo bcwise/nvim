@@ -2,8 +2,6 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 --
-vim.g.mapleader = ","
-
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
@@ -13,50 +11,107 @@ local global = vim.g
 local window_opt = vim.wo
 local cmd = vim.cmd
 
--- This file is automatically loaded by plugins.core
+-- local telescope = require("Telescope")
+
+----------------------------------------
+---- Global Options
+----------------------------------------
 global.mapleader = ","
-window_opt.relativenumber = false
-window_opt.number = true
-window_opt.numberwidth = 4
-window_opt.signcolumn = "yes:2"
+global.lazygit = true
 
-vim.o.termguicolors = true --Set colorscheme (order is important here)
-
--- Make sure lazygit gets loaded
-global.lazygit =
-  true,
-  ---------------------------------------------------
-  -- Abbreviations (typo corrections)
-  ---------------------------------------------------
-  cmd("cnoreabbrev WQ wq")
+---------------------------------------------------
+-- Abbreviations (typo corrections)
+---------------------------------------------------
+cmd("cnoreabbrev WQ wq")
 cmd("cnoreabbrev Wq wq")
 cmd("cnoreabbrev We w")
 cmd("cnoreabbrev W  w")
 cmd("cnoreabbrev Q  q")
 cmd("cnoreabbrev X  x")
 
----------------------------------------------------
--- Clipboard
----------------------------------------------------
-if not vim.env.SSH_TTY then
-  -- only set clipboard if not in ssh, to make sure the OSC 52
-  -- integration works automatically. Requires Neovim >= 0.10.0
-  opt.clipboard = "unnamedplus" -- Sync with system clipboard
+----------------------------------------
+---- Keybindings
+----------------------------------------
+-- -- Use which-key to add extra bindings with the leader-key prefix
+-- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
+-- telescope.builtin.which_key.mappings["<leader>tp"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
+----------------------------------------
+---- Local Options
+----------------------------------------
+local options = {
+  backup = true,
+  clipboard = "unnamedplus",
+  autoread = true,
+  cmdheight = 2,
+  completeopt = { "menu", "menuone", "noselect" },
+  conceallevel = 0,
+  fileencoding = "utf-8",
+  hlsearch = true,
+  incsearch = true,
+  ignorecase = true,
+  mouse = "a",
+  pumheight = 10,
+  showmode = false,
+  showtabline = 2,
+  smartcase = true,
+  smartindent = true,
+  splitbelow = true,
+  splitkeep = vim.fn.has("nvim-0.10.0") == 1 and "screen" or nil,
+  splitright = true,
+  swapfile = true,
+  termguicolors = true,
+  timeout = true,
+  timeoutlen = 400,
+  undofile = true,
+  updatetime = 300,
+  signcolumn = "yes:2",
+  writebackup = false,
+  expandtab = true,
+  softtabstop = 2,
+  shiftwidth = 2,
+  tabstop = 2,
+  nrformats = "alpha",
+  cursorline = true,
+  cursorcolumn = true,
+  cursorlineopt = "both",
+  number = true,
+  numberwidth = 4,
+  relativenumber = false,
+  scrolloff = 8,
+  sidescrolloff = 8,
+  textwidth = 80,
+  errorbells = false,
+  title = true,
+  winwidth = 10,
+  winminwidth = 10,
+  breakindent = true,
+  linebreak = true,
+  wrap = false,
+  wrapscan = false,
+  equalalways = true,
+  ruler = true,
+  infercase = true,
+  virtualedit = "block",
+  fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:,diff:]],
+  foldlevelstart = 99,
+  foldmethod = "manual",
+  foldnestmax = 10,
+  foldcolumn = "1",
+  foldlevel = 99,
+  foldenable = true,
+}
+for k, v in pairs(options) do
+  vim.opt[k] = v
 end
 
----------------------------------------------------
--- Code Completion
----------------------------------------------------
--- opt.completetop = "menu,menuone,noselect"
--- opt.completetop = "menu,menuone"
--- opt.completeopt = "menu,menuone,noinsert,noselect"
--- vim.schedule(function()}
+if vim.fn.has("nvim-0.10.0") == 1 then
+  vim.opt.diffopt:append("linematch:60")
+end
 
-opt.foldenable = false
-cmd("set nowrapscan")
-cmd("set textwidth=80")
-
-cmd("set conceallevel=0")
+vim.opt.iskeyword:append("-")
+vim.opt.formatoptions:remove({ "c", "r", "o" })
+vim.opt.runtimepath:remove("/usr/share/vim/vimfiles")
 
 ---------------------------------------------------
 -- Colors: setup
@@ -103,50 +158,5 @@ vim.schedule(function()
   vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
   vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
 end)
----------------------------------------------------
--- Cursor & Column Line
----------------------------------------------------
-opt.cursorline = true
-opt.cursorcolumn = true
-opt.cursorlineopt = "both"
-
-----------------------------------------
----- GUI
-----------------------------------------
-vim.o.mouse = "a" -- Enable mouse mode
-vim.o.breakindent = true -- Enable break indent
-
----------------------------------------------------
--- Highlights
----------------------------------------------------
--- Are done in the lua/config/autocmds.lua file
-
-----------------------------------------
----- Search Settings
-----------------------------------------
-vim.o.ignorecase = true --Case insensitive searching UNLESS /C or capital in search
-vim.o.smartcase = true
-vim.o.hlsearch = true -- Set Highlights on search
-
-----------------------------------------
----- Sign Column: Number and Sign column settings
-----------------------------------------
-global.relativenumber = false
-global.number = true
-global.numberwidth = 4
-global.signcolumn = "yes:2"
-
-----------------------------------------
----- System Interaction
-----------------------------------------
-opt.updatetime = 250 -- Decrease update time
-
-----------------------------------------
----- Text (on the screen)
-----------------------------------------
-opt.foldenable = false
-cmd("set nowrapscan")
-cmd("set textwidth=80")
-cmd("set conceallevel=0")
 
 --==============================================================================
