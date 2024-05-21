@@ -111,7 +111,6 @@ return {
     local extension = require("telescope").load_extension
 
     extension("fzf")
-    extension("projects")
     extension("lazy")
     extension("notify")
   end,

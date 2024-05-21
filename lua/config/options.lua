@@ -34,7 +34,6 @@ cmd("cnoreabbrev X  x")
 ----------------------------------------
 -- -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
--- telescope.builtin.which_key.mappings["<leader>tp"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
 ----------------------------------------
 ---- Local Options

@@ -110,13 +110,3 @@ vim.api.nvim_set_keymap(
   "<Plug>(EasyAlign)",
   { desc = "Aligns text using a delimiter.", noremap = false, silent = true }
 )
-
---******************************************************************************
---* PLUGIN: Telescope/projects
---******************************************************************************
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>tp",
-  "<cmd>Telescope projects<CR>",
-  { desc = "Start projects in Telescope.", noremap = false, silent = true }
-)
