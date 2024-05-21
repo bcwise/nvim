@@ -25,7 +25,8 @@ return {
       -- stylua: ignore
       center = {
         { action = LazyVim.telescope("files"),                 desc = " Find File",           icon = " ", key = "f" },
-        { action = "ene | startinsert",                        desc = " New File",            icon = " ", key = "n" },
+        { action = "ene | startinsert",                        desc = " New File",            icon = " ", key = "e" },
+        { action = "Neorg",                                    desc = " Neorg",               icon = " ", key = "n" },
         { action = "Telescope oldfiles",                       desc = " Recent Files",        icon = " ", key = "r" },
         { action = "Telescope live_grep",                      desc = " Find Text",           icon = " ", key = "g" },
         { action = "Telescope Neovim-Project",                 desc = " Projects: Recent",    icon = " ", key = "p" },

@@ -12,7 +12,13 @@ return {
         load = {
           ["core.defaults"] = {},
           ["core.ui"] = {},
-          ["core.dirman"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                notes = "~/notes",
+              }
+            }
+          },
           ["core.highlights"] = {},
           ["core.journal"] = {},
           ["core.looking-glass"] = {},
