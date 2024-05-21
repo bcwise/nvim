@@ -33,7 +33,6 @@ return {
           ["core.ui.calendar"] = {},
           ["core.tempus"] = {},
           ["core.text-objects"] = {},
-          ["core.upgrade"] = {},
           ["core.integrations.nvim-cmp"] = {},
           ["core.integrations.treesitter"] = {},
           ["core.completion"] = { config = { engine = "nvim-cmp" } },
