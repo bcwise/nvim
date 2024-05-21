@@ -16,7 +16,13 @@ return {
       defaults = {
         layout_strategy = "horizontal",
         layout_config = {
-          horizontal = { prompt_position = "top", width = 0.99, height = 0.99, preview_width = 0.7 },
+          horizontal = {
+            sorting_strategy = "ascending",
+            prompt_position = "top",
+            width = 0.99,
+            height = 0.99,
+            preview_width = 0.7,
+          },
           -- sorting_strategy = "ascending",
         },
         prompt_prefix = "🔍 ",
