@@ -215,7 +215,13 @@ Format                                                                  | <leade
 View clipboard contents through telescope                               | <leader>tc
 
 ## Neovim-Project
-Delete the project's session (inside Telescope)                         | <c-d>
+Open Neovim-Project in Telescope                                        | <leader>tp
+Find project files                                                      | f
+Browse project files                                                    | b
+Delete project files                                                    | d
+Search in project files                                                 | s
+Recent project files                                                    | r
+Change working directory                                                | w
 
 ## Symbol-Outline
 Symbols Outline                                                         | <leader>so
