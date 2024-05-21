@@ -27,7 +27,7 @@ return {
     priority = 100,
 
     keys = { { "<leader>tp", "<cmd>Telescope neovim-project<cr>", desc = "Project Management" } },
-    keys = { { "<leader>tnd", "<cmd>Telescope neovim-project discovery<cr>", desc = "Project Management discovery" } },
-    keys = { { "<leader>tnh", "<cmd>Telescope neovim-project history<cr>", desc = "Project Management history" } },
+    keys = { { "<leader>tf", "<cmd>Telescope neovim-project discovery<cr>", desc = "Project Management find" } },
+    keys = { { "<leader>th", "<cmd>Telescope neovim-project history<cr>", desc = "Project Management history" } },
   },
 }

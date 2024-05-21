@@ -1,12 +1,18 @@
 ## bear
 
 ## Cheatsheet @quick @reference
+Open Cheatsheet in recent mode                                          | <leader>tp
+Open Cheatsheet in find mode                                            | <leader>tf
+Open Cheatsheet in history mode                                         | <leader>th
 Open (in telescope if installed)                                        | :Cheatsheet
 Open (in telescope if installed)                                        | <leader>?
 Force open in floating window                                           | :Cheatsheet!
 Open user cheatsheet                                                    | :CheatsheetEdit
-Open user cheatsheet from Telescope                                     | <C-E>
+Edit user cheatsheet from Telescope                                     | <C-E>
 Toggle default cheatsheet Telescope                                     | <C-D>
+Select or Fill Commandline                                              | <CR>
+Select or Execute                                                       | <A-CR>
+Copy cheat value                                                        | <C-Y>
 
 ## Vim-dadbod(Simple navigation through DB. These are the default mappings for the dbui drawer)
 Open/Toggle Drawer options                                              | o / <CR>
@@ -216,6 +222,10 @@ View clipboard contents through telescope                               | <leade
 
 ## Neovim-Project
 Open Neovim-Project in Telescope                                        | <leader>tp
+Open Neovim-Project (history view)                                      | <leader>th
+Open Neovim-Project (recent view)                                       | :Telescope neovim-project
+Open Neovim-Project (discover view)                                     | :Telescope neovim-project discover
+Open Neovim-Project (history view)                                      | :Telescope neovim-project history
 Find project files                                                      | f
 Browse project files                                                    | b
 Delete project files                                                    | d
