@@ -1,46 +1,46 @@
 --------------------------------------------------------------------------------
--- Plugin: nvconfig.lua
+-- Plugin: doctorfree/cheatsheet.nvim
+-- This is a fork of the sudormrfbin/cheatsheet.nvim repo.
 --------------------------------------------------------------------------------
 return {
   {
-    "sudormrfbin/cheatsheet.nvim",
+    "doctorfree/cheatsheet.nvim",
+    event = "VeryLazy",
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
     },
+    config = function()
+      local ctactions = require("cheatsheet.telescope.actions")
+      require("cheatsheet").setup({
+        bundled_cheetsheets = {
+          enabled = { "default", "lua", "markdown", "regex", "netrw", "unicode" },
+          disabled = { "nerd-fonts" },
+        },
+        bundled_plugin_cheatsheets = {
+          enabled = {
+            "auto-session",
+            "goto-preview",
+            "octo.nvim",
+            "telescope.nvim",
+            "vim-easy-align",
+            "vim-sandwich",
+          },
+          disabled = { "gitsigns" },
+        },
+        include_only_installed_plugins = true,
+        telescope_mappings = {
+          ["<CR>"] = ctactions.select_or_fill_commandline,
+          ["<A-CR>"] = ctactions.select_or_execute,
+          ["<C-Y>"] = ctactions.copy_cheat_value,
+          ["<C-E>"] = ctactions.edit_user_cheatsheet,
+        },
+      })
+    end,
+
     keys = {
       { "<leader>ch", "<cmd>Cheatsheet<cr>", desc = "Toggle Cheatsheets open/close" },
-    },
-    opts = {
-      -- Whether to show bundled cheetsheets
-
-      -- For generic cheatsheets like default, unicode, nerd-fonts, etc
-      -- bundled_cheatsheets = {
-      --   enabled = {},
-      --   disabled = {},
-      -- },
-      bundled_cheatsheets = true,
-
-      -- For plugin specific cheatsheets
-      bundled_plugin_cheatsheets = {
-        -- enabled = {},
-        disabled = { "nerd-fonts" },
-      },
-      -- bundled_plugin_cheatsheets = true,
-
-      -- For bundled plugin cheatsheets, do not show a sheet if you
-      -- don't have the plugin installed (searches runtimepath for
-      -- same directory name)
-      include_only_installed_plugins = true,
-
-      -- Key mappings bound inside the telescope window
-      -- telescope_mappings = {
-      --   ["<CR>"] = require("cheatsheet.telescope.actions").select_or_fill_commandline,
-      --   ["<A-CR>"] = require("cheatsheet.telescope.actions").select_or_execute,
-      --   ["<C-Y>"] = require("cheatsheet.telescope.actions").copy_cheat_value,
-      --   ["<C-E>"] = require("cheatsheet.telescope.actions").edit_user_cheatsheet,
-      -- },
     },
   },
 }

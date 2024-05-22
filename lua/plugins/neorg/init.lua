@@ -15,9 +15,10 @@ return {
           ["core.dirman"] = {
             config = {
               workspaces = {
-                notes = "~/notes",
-              }
-            }
+                notes = "~/Documents/Neorg/notes",
+              },
+            },
+            index = "index.norg", -- The name of the main (root) .norg file
           },
           ["core.highlights"] = {},
           ["core.journal"] = {},
