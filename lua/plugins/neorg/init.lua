@@ -20,6 +20,7 @@ return {
             },
             index = "index.norg", -- The name of the main (root) .norg file
           },
+          ["core.export"] = {},
           ["core.highlights"] = {},
           ["core.journal"] = {},
           ["core.looking-glass"] = {},
