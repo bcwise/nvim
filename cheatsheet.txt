@@ -273,6 +273,19 @@ Yank additions                                                          | <cr>
 Yank deletions                                                          | <S-cr>
 Restore                                                                 | <C-u>
 
+## Toggle
+Toggle Auto Format (Buffer)	n                                         | <leader>uF
+Toggle Auto Format (Global)	n                                         | <leader>uf 
+Toggle Background                                                     | <leader>ub
+Toggle Conceal	n                                                     | <leader>uc
+Toggle Diagnostics	n                                                 | <leader>ud
+Toggle Inlay Hints	n                                                 | <leader>uh
+Toggle Line Numbers	n                                                 | <leader>ul
+Toggle Relative Line Numbers	n                                       | <leader>uL
+Toggle Spelling	n                                                     | <leader>us
+Toggle Treesitter Highlight	n                                         | <leader>uT
+Toggle Word Wrap	n                                                   | <leader>uw
+
 ## UFO
 Open all folds                                                          | zR 
 Close all folds                                                         | zM
