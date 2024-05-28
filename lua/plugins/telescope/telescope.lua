@@ -15,7 +15,11 @@ return {
     require("telescope").setup({
       defaults = {
         layout_strategy = "horizontal",
+        sorting_strategy = "ascending",
+        -- layout_strategy = "horizontal_merged",
+        -- layout_strategy = "horizontal",
         layout_config = {
+          prompt_position = "top",
           horizontal = {
             sorting_strategy = "ascending",
             prompt_position = "top",
@@ -23,7 +27,6 @@ return {
             height = 0.99,
             preview_width = 0.7,
           },
-          -- sorting_strategy = "ascending",
         },
         prompt_prefix = "🔍 ",
         borderchars = {
