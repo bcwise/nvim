@@ -99,6 +99,7 @@ local options = {
   foldcolumn = "1",
   foldlevel = 99,
   foldenable = true,
+  spell = true,
 }
 for k, v in pairs(options) do
   vim.opt[k] = v
