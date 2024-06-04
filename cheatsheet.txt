@@ -222,6 +222,7 @@ View clipboard contents through telescope                               | <leade
 
 ## Neovim-Project
 Open Neovim-Project in Telescope                                        | <leader>tp
+Open Neovim-Project (find view)                                         | <leader>tf 
 Open Neovim-Project (history view)                                      | <leader>th
 Open Neovim-Project (recent view)                                       | :Telescope neovim-project
 Open Neovim-Project (discover view)                                     | :Telescope neovim-project discover

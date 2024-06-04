@@ -5,7 +5,7 @@ return {
       projects = { -- define project roots
         "~/projects/*",
         "~/dev/*",
-        "~/.config/*",
+        "~/.config/nvim",
         "~/Documents/church",
         "~/Documents/church/general_conference",
       },

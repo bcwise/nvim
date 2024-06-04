@@ -36,6 +36,9 @@ return {
           ["<C-Y>"] = ctactions.copy_cheat_value,
           ["<C-E>"] = ctactions.edit_user_cheatsheet,
         },
+        telescope_opts = {
+          cols = 12,
+        },
       })
     end,
 
