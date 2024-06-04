@@ -13,7 +13,11 @@ vim.keymap.del("n", "L")
 --******************************************************************************
 --* SEARCH Mappings
 --******************************************************************************
+
 -- Center the results on the screen
+map("c", "<CR>", function()
+  return vim.fn.getcmdtype() == "/" and "<CR>zzzv" or "<CR>"
+end, { expr = true })
 map("n", "n", "nzz", { noremap = true, silent = true, desc = "Searches forward and centers the result" })
 map("n", "N", "Nzz", { noremap = true, silent = true, desc = "Searches backward and centers the result" })
 map("n", "*", "*zz", {
