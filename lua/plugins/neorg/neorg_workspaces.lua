@@ -19,10 +19,12 @@ return {
       config = {
         workspaces = {
           Neorg = "~/Documents/Neorg",
+          Archive = "~/Documents/Neorg/Archive",
           Area = "~/Documents/Neorg/Area",
+          Notes = "~/Documents/Neorg/Notes",
+          journal = "~/Documents/Neorg/Journal",
           Resources = "~/Documents/Neorg/Resources",
           Projects = "~/Documents/Neorg/Projects",
-          Archive = "~/Documents/Neorg/Archive",
           WSL = "~/Documents/Neorg/WSL",
         },
       },
