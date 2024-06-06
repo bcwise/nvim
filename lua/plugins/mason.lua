@@ -7,16 +7,15 @@ return {
       ensure_installed = {
         "bash-language-server",
         "black",
+        "checkmake",
         "cmake-language-server",
+        "codespell",
+        "commitlint",
+        "flake8",
+        "htmlhint",
+        "jsonlint",
         "json-lsp",
-        "lua-language-server",
-        "ruby-lsp",
-        "shellcheck",
-        "shfmt",
-        "sqls",
-        "stylua",
-        "texlab",
-        "typescript-language-server",
+        "python-lsp-server",
       },
 
       -- config = function()

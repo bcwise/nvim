@@ -23,7 +23,6 @@ return {
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-calc",
       "lukas-reineke/cmp-rg",
-      "f3fora/cmp-spell",
       -- "petertriho/cmp-git",
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
@@ -159,16 +158,6 @@ return {
           { name = "luasnip", max_item_count = 5 },
           { name = "friendly-snippets", max_item_count = 5 },
           { name = "neorg" },
-          -- { name = "spell", priority = 5 },
-          {
-            name = "spell",
-            option = {
-              keep_all_entries = false,
-              enable_in_context = function()
-                return require("cmp.config.context").in_treesitter_capture("spell")
-              end,
-            },
-          },
           { name = "cmdline" },
           { name = "path" },
           { name = "calc" },
