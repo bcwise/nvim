@@ -7,6 +7,11 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "tsakirist/telescope-lazy.nvim" },
   },
+  opts = function()
+    LazyVim.on_load("telescope.nvim", function()
+      require("telescope").load_extension("aerial")
+    end)
+  end,
   config = function()
     local actions = require("telescope.actions")
     local trouble = require("trouble.providers.telescope")
@@ -112,6 +117,7 @@ return {
     })
 
     local extension = require("telescope").load_extension
+    require("telescope").load_extension("aerial")
 
     extension("fzf")
     extension("lazy")

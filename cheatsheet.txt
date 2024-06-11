@@ -14,6 +14,9 @@ Select or Fill Commandline                                              | <CR>
 Select or Execute                                                       | <A-CR>
 Copy cheat value                                                        | <C-Y>
 
+## Aerial
+Toggle Aerial window                                                    | <leader>cs
+
 ## Vim-dadbod(Simple navigation through DB. These are the default mappings for the dbui drawer)
 Open/Toggle Drawer options                                              | o / <CR>
 Open in vertical split                                                  | S
@@ -247,6 +250,7 @@ fuzzy file search                                                       | <leade
 fuzzy grep search                                                       | <leader>fg
 fuzzy help search                                                       | <leader>fh
 Project mode                                                            | <leader>tp
+Goto Symbol (Aerial)                                                    | <leader>ss
 
 
 ## Telescope-Project
