@@ -237,6 +237,22 @@ Search in project files                                                 | s
 Recent project files                                                    | r
 Change working directory                                                | w
 
+## Spell
+Make spelling suggestions for the word under the cursor                 | z=
+Move to next misspelled word after the cursor                           | ]s
+Move to previous misspelled word before the cursor                      | [s
+Move to the next bad word (not at rare or words for another region)     | ]S
+Move to the previous bad word (not at rare or words for another region) | [S
+Only stop at bad words, not at rare or words for another region         | ]S
+Add word under the cursor as a good word to the spellfile               | zg
+Add word under the cursor as a good word to the internal word list      | zG
+Mark the word as a wrong (bad) word                                     | zw
+Add the word under the cursor to the internal word list                 | zW
+Undo |zw| remove the word from the entry in 'spellfile'                 | zuw
+Undo |zg| remove the word from the entry in 'spellfile'                 | zug
+Undo |zW| remove the word from the internal word list                   | zuW
+Undo |zG| remove the word from the internal word list                   | zuG
+
 ## Symbol-Outline
 Symbols Outline                                                         | <leader>so
 Symbols Outline Open                                                    | <leader>soo
