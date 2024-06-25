@@ -19,6 +19,9 @@ local cmd = vim.cmd
 global.mapleader = ","
 global.lazygit = true
 
+-- Enable luarocks
+-- opt.rocks.hererocks = true
+
 ---------------------------------------------------
 -- Abbreviations (typo corrections)
 ---------------------------------------------------
