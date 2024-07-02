@@ -64,6 +64,8 @@ return {
         formatting = {
           fields = { "kind", "menu", "abbr" },
           format = lspkind.cmp_format({
+            maxwidth = 120,
+            minwidth = 60,
             mode = "symbol_text",
             menu = {
               buffer = "[Buffer ]",
@@ -160,9 +162,10 @@ return {
           { name = "neorg" },
           { name = "cmdline" },
           { name = "path" },
-          { name = "calc" },
+          { name = "calc", keyword_length = 2 },
           { name = "emoji" },
           { name = "rg", keyword_length = 2 },
+          { name = "rg", keyword_length = 2, max_item_count = 10 },
           { name = "buffer", keyword_length = 2, max_item_count = 5, option = buffer_option },
           { name = "mkdnflow" },
         }),
@@ -207,12 +210,38 @@ return {
   },
 
   ------------------------------------------------------------------------------
+  -- Adding calc
+  ------------------------------------------------------------------------------
+  {
+    "nvim-cmp",
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, {
+        name = "calc",
+        group_index = 1,
+        priority = 100,
+      })
+    end,
+  },
+
+  ------------------------------------------------------------------------------
   -- Adding clangd
   ------------------------------------------------------------------------------
   {
     "nvim-cmp",
     opts = function(_, opts)
       table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
+    end,
+  },
+
+  ------------------------------------------------------------------------------
+  -- Adding git
+  ------------------------------------------------------------------------------
+  {
+    "nvim-cmp",
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, {
+        name = "git",
+      })
     end,
   },
 
