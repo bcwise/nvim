@@ -3,11 +3,32 @@ return {
     "coffebar/neovim-project",
     opts = {
       projects = { -- define project roots
-        "~/projects/*",
-        "~/dev/*",
+        -- Standard Projects (found at home & work)
         "~/.config/nvim",
+        -- Home Projects
         "~/Documents/church",
         "~/Documents/church/general_conference",
+        "~/bin",
+        "~/dev/*",
+        "~/dev/gencon",
+        "~/projects/*",
+        ".bashrc",
+        ".zshrc",
+        -- Work Projects
+        "~/nemesis3/bin",
+        "~/nemesis3/work",
+        "~/nemesis3/work/dev",
+        "~/nemesis3/work/programs",
+        "~/nemesis3/work/software",
+        "~/nemesis3/.bashrc",
+        "~/nemesis3/.zshrc",
+        "work/programs",
+        "work/programs/CF/*",
+        "work/programs/CF/repos/*",
+        "work/programs/CF/repos/SCF_system_bit_service/*",
+        "work/programs/CLF/repos/*",
+        "work/software?",
+        "work/dev",
       },
       -- Load the most recent session on startup if not in the project directory
       last_session_on_startup = false,
