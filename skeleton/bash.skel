@@ -1,0 +1,292 @@
+#!/bin/bash
+# ******************************************************************************
+#  File:   @FILENAME@
+#  Author: @AUTHOR@
+#  Email:  @AUTHOR_EMAIL@
+# ------------------------------------------------------------------------------
+#  Creation date: @TIMESTAMP@
+#  Last modified: @TIMESTAMP@
+#  Version:       @VERSION@
+# ------------------------------------------------------------------------------
+#  Description:
+#
+# ******************************************************************************
+
+################################################################################
+# CONSTANTS
+################################################################################
+KERNEL_NAME=$(uname -s)
+IS_CLEAR_FLAG=0
+IS_PSEUDO_FLAG=0
+IS_VERBOSE_FLAG=0
+
+echo "program: $0"
+PROGRAM_NAME=$(basename -- "$0")
+
+#----------------------------------------------
+# MESSAGE VARIABLES
+#----------------------------------------------
+MSG_ERROR=0
+MSG_WARNING=1
+MSG_INFO=2
+
+#----------------------------------------------
+# PROGRAM VARIABLES
+#----------------------------------------------
+IS_EMBEDDED_FLAG=0
+IS_DESKTOP_FLAG=0
+
+BUILD_DIR="build"
+RVAL=0
+
+#
+# Defaults
+#
+# Construct Default Input File Name
+DEFAULT_INPUT_NAME="input"
+DEFAULT_INPUT_PATH="~/Documents"
+DEFAULT_INPUT_EXT="txt"
+DEFAULT_INPUT_FILE=${DEFAULT_INPUT_PATH}/${DEFAULT_INPUT_NAME}.${DEFAULT_INPUT_EXT}
+
+# Construct Default Output File Name
+DEFAULT_OUTPUT_NAME="output"
+DEFAULT_OUTPUT_PATH="~/Documents"
+DEFAULT_OUTPUT_EXT="oput"
+DEFAULT_OUTPUT_FILE=${DEFAULT_OUTPUT_PATH}/${DEFAULT_OUTPUT_NAME}.${DEFAULT_OUTPUT_EXT}
+
+#
+# Variables
+#
+INPUT_FILE=$DEFAULT_INPUT_FILE
+OUTPUT_FILE=$DEFAULT_OUTPUT_FILE
+
+################################################################################
+# SPECIFIC FUNCTIONS
+################################################################################
+
+#-------------------------------------------------------------------
+# check_for_root()
+#
+# Comments:
+#    Verify that the user is running as root
+#-------------------------------------------------------------------
+check_for_root() {
+  if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root"
+    exit
+  fi
+}
+
+################################################################################
+# STANDARD FUNCTIONS
+################################################################################
+
+#-------------------------------------------------------------------
+# internal_error()
+# $2: Message
+#-------------------------------------------------------------------
+internal_error() {
+  "[INTERNAL ERROR] $1"
+  exit
+}
+
+#-------------------------------------------------------------------
+# err_msg()
+# $1: Message Type
+# $2: Message
+# $3: Exit
+#-------------------------------------------------------------------
+err_msg() {
+  if [[ $# -ne 3 ]]; then
+    internal_error "msg() error.  Invalid parameter count ($#)"
+  fi
+
+  MSG_TYPE=$1
+  MSG=$2
+  MSG_EXIT=$3
+  is_verbose "[err_msg] MSG_TYPE: $MSG_TYPE"
+
+  case $1 in
+    $MSG_ERROR)
+      MSG_TYPE_STRING="ERROR"
+      ;;
+    $MSG_WARNING)
+      MSG_TYPE_STRING="WARNING"
+      ;;
+    $MSG_INFO)
+      MSG_TYPE_STRING="INFO"
+      ;;
+    *)
+      MSG_TYPE_STRING="UNKNOWN"
+      ;;
+  esac
+
+  echo "[$MSG_TYPE_STRING] $MSG"
+
+  if [ '$MSG_EXIT' != '0' ]; then
+    exit
+  fi
+}
+
+#-------------------------------------------------------------------
+# msg()
+# $1: Message
+#-------------------------------------------------------------------
+msg() {
+  echo "$1"
+}
+
+#-------------------------------------------------------------------
+# is_verbose()
+#-------------------------------------------------------------------
+is_verbose() {
+  if [[ $IS_VERBOSE_FLAG -eq 1 ]]; then
+    echo "[VERBOSE] $1"
+  fi
+}
+
+#-------------------------------------------------------------------
+# do_cmd
+#-------------------------------------------------------------------
+do_cmd() {
+  local cmd=$1
+  RVAL=0
+
+  if [[ $IS_PSEUDO_FLAG -eq 1 ]]; then
+    echo "[PSEUDO] $cmd"
+  else
+    if [[ $IS_VERBOSE_FLAG -eq 1 ]]; then
+      is_verbose "[cmd] $cmd"
+    fi
+    eval "$cmd"
+    RVAL=$?
+  fi
+}
+
+#-------------------------------------------------------------------
+# help
+#-------------------------------------------------------------------
+help() {
+  echo "PROGRAM"
+  echo "   $PROGRAM_NAME"
+  echo
+  echo "SYNOPSIS"
+  echo "   $PROGRAM_NAME [-h, --help], [-p, --pseudo], [-v, --verbose]"
+  echo "                 [-c, --city CITY] [-f, --file FILE]"
+  echo
+  echo "              If no options are given, then both the embedded"
+  echo "              and desktop programs are build."
+  echo
+  echo "DESCRIPTION"
+  echo "     $PROGRAM_NAME is used to make sure that everything works."
+  echo "     This is a fine description."
+  echo
+  echo "OPTIONS"
+  echo "   -i, --input FILE"
+  echo "      Enter the input file"
+  echo "      The default is: $INPUT_FILE"
+  echo
+  echo "   -o, --output FILE"
+  echo "      The output file name for the ISO image."
+  echo "      The default is: $OUTPUT_FILE"
+  echo "      ISO will be used as the extension."
+  echo
+  echo "   -h, --help"
+  echo "      Bring up the help text."
+  echo
+  echo "   -p, --pseudo"
+  echo "      Test mode, don't actually do anything"
+  echo
+  echo "   -v, --verbose"
+  echo "      Verbose (used for debugging)"
+  echo
+  exit
+}
+
+################################################################################
+# PARSE
+################################################################################
+parse() {
+
+  SHORT=i:,o:,h,p,v
+  LONG=input:,output:,help,pseudo,verbose
+  OPTS=$(getopt --options $SHORT --longoptions $LONG -- "${@}")
+
+  eval set -- "$OPTS"
+
+  while :; do
+    case "$1" in
+      -i | --input)
+        INPUT_FILE="$2"
+        INPUT_FILE+=${INPUT_FILE_EXT}
+        shift 2
+        ;;
+      -o | --output)
+        OUTPUT_FILE="$2"
+        OUTPUT_FILE+=${OUTPUT_FILE_EXT}
+        shift 2
+        ;;
+      -h | --help)
+        help
+        exit 2
+        ;;
+      -p | --pseudo)
+        IS_PSEUDO_FLAG=1
+        shift
+        ;;
+      -v | --verbose)
+        echo "is verbose now 1"
+        IS_VERBOSE_FLAG=1
+        shift 1
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        echo "Unexpected option: $1"
+        shift
+        break
+        ;;
+    esac
+  done
+  # Positional Parameters remaining...
+  echo "The number of positional parameter : $#"
+  if [ "$#" = 0 ]; then
+    echo "You forgot to put the file name at the end of the command line"
+    echo "All position parameters remaining: '$@'"
+    echo "1: $1"
+  fi
+
+  is_verbose "-------------------------------------------------------------"
+  is_verbose "City1:                 $city1"
+  is_verbose "File:                  $file"
+  is_verbose "-------------------------------------------------------------"
+  is_verbose "IS_VERBOSE_FLAG flag:  $IS_VERBOSE_FLAG"
+  is_verbose "IS_PSEUDO_FLAG flag:   $IS_PSEUDO_FLAG"
+  is_verbose "-------------------------------------------------------------"
+
+  return 1
+
+} # parse()
+
+################################################################################
+# MAIN
+################################################################################
+main() {
+  parse ${@}
+  # check_for_root
+
+  #-------------------------------------------------------------------
+  # Done!
+  #-------------------------------------------------------------------
+  echo "Complete!"
+}
+
+# For unit testing, we don't call main() if the file is sourced by the
+# unit test framework
+if [ "$0" == "$BASH_SOURCE" ]; then
+  main $@
+fi
+
+#==============================================================================
