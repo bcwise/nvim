@@ -164,7 +164,6 @@ return {
           { name = "path" },
           { name = "calc", keyword_length = 2 },
           { name = "emoji" },
-          { name = "rg", keyword_length = 2 },
           { name = "rg", keyword_length = 2, max_item_count = 10 },
           { name = "buffer", keyword_length = 2, max_item_count = 5, option = buffer_option },
           { name = "mkdnflow" },
