@@ -25,15 +25,17 @@ global.lazygit = true
 ---------------------------------------------------
 -- Abbreviations (typo corrections)
 ---------------------------------------------------
-cmd("cnoreabbrev WQ wq")
-cmd("cnoreabbrev Wq wq")
-cmd("cnoreabbrev We w")
-cmd("cnoreabbrev W  w")
 cmd("cnoreabbrev Q  q")
+cmd("cnoreabbrev W  w")
+cmd("cnoreabbrev We w")
+cmd("cnoreabbrev Wq wq")
+cmd("cnoreabbrev WQ wq")
 cmd("cnoreabbrev X  x")
+cmd("cnoreabbrev XA xa")
 
 ----------------------------------------
 ---- Keybindings
+---Now is teh theim
 ----------------------------------------
 -- -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
